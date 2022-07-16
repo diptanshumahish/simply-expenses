@@ -1,3 +1,5 @@
+import 'package:expense_tracker/main.dart';
+import 'package:expense_tracker/screens.dart/drawer.dart';
 import 'package:expense_tracker/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,13 +34,11 @@ class _HomePageState extends State<HomePage> {
               Text("Simply ",
                   style: TextStyle(
                       fontSize: 25,
-                      letterSpacing: 0.5,
                       fontWeight: FontWeight.bold,
                       color: AppColors.themeColor)),
               Text("Expenses",
                   style: TextStyle(
                       fontSize: 25,
-                      letterSpacing: 0.5,
                       fontWeight: FontWeight.bold,
                       color: topColor == Brightness.dark
                           ? Colors.white
@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: ListView(
+          physics: BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           children: [
             Padding(
@@ -264,6 +265,124 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Overall earnings",
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: topColor == Brightness.dark
+                                ? Colors.white
+                                : AppColors.darkBack)),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text("\u{0024}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                                color: topColor == Brightness.dark
+                                    ? Colors.white
+                                    : AppColors.darkBack)),
+                        Text("300",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                                color: topColor == Brightness.dark
+                                    ? Colors.white
+                                    : AppColors.darkBack))
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Total Savings",
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    color: topColor == Brightness.dark
+                                        ? Colors.white
+                                        : AppColors.darkBack)),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text("\u{0024}",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 20,
+                                        color: AppColors.positive)),
+                                Text("18.69",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30,
+                                        color: AppColors.positive))
+                              ],
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [Icon(CupertinoIcons.smiley, size: 100)],
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                            height: MediaQuery.of(context).size.width / 4,
+                            width: MediaQuery.of(context).size.width / 2.5,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(9),
+                                color: AppColors.themeColor),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.payment),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    "Track Expenses",
+                                    style: TextStyle(
+                                        fontSize: 17, color: Colors.white),
+                                  )
+                                ],
+                              ),
+                            )),
+                        Spacer(),
+                        Container(
+                            height: MediaQuery.of(context).size.width / 4,
+                            width: MediaQuery.of(context).size.width / 2.5,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(9),
+                                color: AppColors.positive),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.upcoming),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    "Update Details",
+                                    style: TextStyle(
+                                        fontSize: 17, color: Colors.white),
+                                  )
+                                ],
+                              ),
+                            )),
+                      ],
+                    )
+                  ]),
             )
           ],
         ));

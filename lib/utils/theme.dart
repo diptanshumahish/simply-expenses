@@ -7,6 +7,7 @@ abstract class AppColors {
   static const sec = Color(0xFFffff82);
   static const darkBack = Color(0xFF212738);
   static const lighttext = Color(0xFFedf2ef);
+  static const positive = Colors.green;
 }
 
 abstract class Apptheme {
