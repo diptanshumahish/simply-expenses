@@ -1,5 +1,8 @@
+import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/main.dart';
 import 'package:expense_tracker/screens.dart/drawer.dart';
+import 'package:expense_tracker/screens.dart/expenselist.dart';
+import 'package:expense_tracker/screens.dart/expensescreen.dart';
 import 'package:expense_tracker/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +15,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int total = 0;
+  void calcTotal() async {
+    var totalExpense = (await db.totalExpense())[0]['TOTAL'];
+    setState(() {
+      if (totalExpense == null) {
+        total = 0;
+      } else {
+        total = totalExpense;
+      }
+    });
+  }
+
+  var db = DatabaseConnect();
+
+  @override
+  void initState() {
+    calcTotal();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final topColor = Theme.of(context).brightness;
@@ -79,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                                       fontWeight: FontWeight.w500,
                                       fontSize: 20,
                                       color: AppColors.lighttext)),
-                              Text("100.90",
+                              Text(total.toString(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 30,
@@ -100,7 +123,12 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(fontSize: 18, color: AppColors.sec)),
                       Spacer(),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => ExpensesPage())));
+                        },
                         child: Row(
                           children: [
                             Icon(CupertinoIcons.forward),
