@@ -1,11 +1,13 @@
 import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/screens.dart/expenselist.dart';
 import 'package:expense_tracker/screens.dart/expensescreen.dart';
+import 'package:expense_tracker/shared/sharedpreferenecs.dart';
 import 'package:expense_tracker/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddExpenses extends StatefulWidget {
   final int id;
@@ -26,6 +28,13 @@ class AddExpenses extends StatefulWidget {
 }
 
 class _AddExpensesState extends State<AddExpenses> {
+  void loadPref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      currency = (prefs.getString("currency") ?? 0);
+    });
+  }
+
   @override
   @override
   Widget build(BuildContext context) {
@@ -104,7 +113,7 @@ class _AddExpensesState extends State<AddExpenses> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "\u{0024}",
+                      currency,
                       style: TextStyle(
                           color: topColor == Brightness.dark
                               ? AppColors.lighttext

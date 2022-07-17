@@ -1,10 +1,12 @@
 import 'package:expense_tracker/database/incomedatabase.dart';
 import 'package:expense_tracker/screens.dart/incomescreen.dart';
+import 'package:expense_tracker/shared/sharedpreferenecs.dart';
 import 'package:expense_tracker/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddIncome extends StatefulWidget {
   final int id;
@@ -25,6 +27,13 @@ class AddIncome extends StatefulWidget {
 }
 
 class _AddIncomeState extends State<AddIncome> {
+  void loadPref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      currency = (prefs.getString("currency") ?? 0);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final topColor = Theme.of(context).brightness;
@@ -93,7 +102,7 @@ class _AddIncomeState extends State<AddIncome> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "\u{0024}",
+                      currency,
                       style: TextStyle(color: AppColors.positive, fontSize: 15),
                     ),
                     SizedBox(width: 3),

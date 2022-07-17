@@ -3,18 +3,30 @@ import 'package:expense_tracker/database/incomedatabase.dart';
 import 'package:expense_tracker/screens.dart/drawer.dart';
 import 'package:expense_tracker/screens.dart/expensescreen.dart';
 import 'package:expense_tracker/screens.dart/incomescreen.dart';
+import 'package:expense_tracker/shared/sharedpreferenecs.dart';
 import 'package:expense_tracker/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  void loadPref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      username = (prefs.getString("name") ?? 0);
+      currency = (prefs.getString("currency") ?? 0);
+    });
+  }
+
   double total = 0;
   int totalIncome = 0;
   double totalFood = 0;
@@ -92,6 +104,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    loadPref();
     calcTotalFood();
     calcTotalLeisure();
     calcTotalRents();
@@ -158,7 +171,7 @@ class _HomePageState extends State<HomePage> {
                                 : AppColors.darkBack,
                             fontSize: 25),
                       ),
-                      Text("Usernamensdfdshjshjahfahkfhaskfhaksfh,",
+                      Text(username.toString(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -199,7 +212,7 @@ class _HomePageState extends State<HomePage> {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text("\u{0024}",
+                                  Text(currency,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 20,
@@ -283,7 +296,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "\u{0024}",
+                                  currency,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
@@ -315,7 +328,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "\u{0024}",
+                                  currency,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
@@ -347,7 +360,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "\u{0024}",
+                                  currency,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
@@ -380,7 +393,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "\u{0024}",
+                                  currency,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
@@ -413,7 +426,7 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text("\u{0024}",
+                        Text(currency,
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 20,
@@ -445,11 +458,13 @@ class _HomePageState extends State<HomePage> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(
-                                    CupertinoIcons.money_dollar,
-                                    color: AppColors.darkBack,
-                                  ),
+                                  Text(currency,
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: AppColors.darkBack)),
+                                  SizedBox(width: 5),
                                   Text("Track Income",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
@@ -479,7 +494,7 @@ class _HomePageState extends State<HomePage> {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text("\u{0024}",
+                                Text(currency,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 20,

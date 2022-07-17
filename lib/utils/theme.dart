@@ -19,7 +19,7 @@ abstract class Apptheme {
         scaffoldBackgroundColor: Color.fromARGB(255, 255, 255, 255),
       );
   static ThemeData dark() => ThemeData(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 35, 35, 36),
+        scaffoldBackgroundColor: Color(0xFF232324),
         brightness: Brightness.dark,
         textTheme: GoogleFonts.interTextTheme().apply(),
       );
