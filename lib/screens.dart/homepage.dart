@@ -16,6 +16,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int total = 0;
+  int totalFood = 0;
+  int totalLeisure = 0;
+  int totalRents = 0;
+  int totalOthers = 0;
   void calcTotal() async {
     var totalExpense = (await db.totalExpense())[0]['TOTAL'];
     setState(() {
@@ -27,11 +31,60 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void calcTotalFood() async {
+    var totalExpense = (await db.totalFood())[0]['TOTAL'];
+    setState(() {
+      if (totalExpense == null) {
+        total = 0;
+      } else {
+        totalFood = totalExpense;
+      }
+    });
+  }
+
+  void calcTotalLeisure() async {
+    var totalExpense1 = (await db.totalLeisure())[0]['TOTAL'];
+    setState(() {
+      if (totalExpense1 == null) {
+        total = 0;
+      } else {
+        totalLeisure = totalExpense1;
+      }
+    });
+  }
+
+  void calcTotalRents() async {
+    var totalExpense = (await db.totalRents())[0]['TOTAL'];
+    setState(() {
+      if (totalExpense == null) {
+        total = 0;
+      } else {
+        totalRents = totalExpense;
+      }
+    });
+  }
+
+  void calcTotalOthers() async {
+    var totalExpense = (await db.totalOthers())[0]['TOTAL'];
+    setState(() {
+      if (totalExpense == null) {
+        total = 0;
+      } else {
+        totalOthers = totalExpense;
+      }
+    });
+  }
+
   var db = DatabaseConnect();
 
   @override
   void initState() {
+    calcTotalFood();
+    calcTotalLeisure();
+    calcTotalRents();
+    calcTotalOthers();
     calcTotal();
+
     super.initState();
   }
 
@@ -183,7 +236,7 @@ class _HomePageState extends State<HomePage> {
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("20.0",
+                                Text(totalFood.toString(),
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold))
@@ -215,7 +268,7 @@ class _HomePageState extends State<HomePage> {
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("20.0",
+                                Text(totalLeisure.toString(),
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold))
@@ -247,7 +300,7 @@ class _HomePageState extends State<HomePage> {
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("20.0",
+                                Text(totalRents.toString(),
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold))
@@ -280,7 +333,7 @@ class _HomePageState extends State<HomePage> {
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("20.0",
+                                Text(totalOthers.toString(),
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold))

@@ -90,7 +90,39 @@ CREATE TABLE expense(
 
   Future totalExpense() async {
     final db = await database;
-    var result = await db.rawQuery("SELECT SUM(amt) as Total FROM expense");
+    var result = await db.rawQuery("SELECT SUM(amt) AS TOTAL FROM expense");
+
+    return result.toList();
+  }
+
+  Future totalFood() async {
+    final db = await database;
+    var result = await db
+        .rawQuery("SELECT SUM(amt) AS TOTAL FROM expense WHERE type = 'Food'");
+
+    return result.toList();
+  }
+
+  Future totalLeisure() async {
+    final db = await database;
+    var result = await db.rawQuery(
+        "SELECT SUM(amt) AS TOTAL FROM expense WHERE type = 'Leisure'");
+
+    return result.toList();
+  }
+
+  Future totalRents() async {
+    final db = await database;
+    var result = await db
+        .rawQuery("SELECT SUM(amt) AS TOTAL FROM expense WHERE type = 'Rents'");
+
+    return result.toList();
+  }
+
+  Future totalOthers() async {
+    final db = await database;
+    var result = await db.rawQuery(
+        "SELECT SUM(amt) AS TOTAL FROM expense WHERE type = 'Others'");
 
     return result.toList();
   }

@@ -43,6 +43,7 @@ class _ExpenseListState extends State<ExpenseList> {
                 )
               : ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
                   itemCount: dataLength,
                   itemBuilder: (context, i) => AddExpenses(
                       id: data[i].id,

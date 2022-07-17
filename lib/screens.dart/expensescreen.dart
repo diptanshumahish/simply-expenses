@@ -37,11 +37,12 @@ class _ExpensesPageState extends State<ExpensesPage> {
         elevation: 0,
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [],
+            children: [ExpenseList()],
           ),
         ),
       ),
