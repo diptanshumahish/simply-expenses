@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:expense_tracker/database/database.dart';
+import 'package:expense_tracker/screens.dart/expensescreen.dart';
+import 'package:expense_tracker/screens.dart/homepage.dart';
 import 'package:expense_tracker/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +60,11 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                 children: [
                                   IconButton(
                                       onPressed: () {
-                                        Navigator.pop(context);
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ExpensesPage()));
                                       },
                                       icon: Icon(CupertinoIcons.back)),
                                   Text(
@@ -198,22 +204,6 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                     value3 = false;
                                     value2 = false;
                                   })),
-                          Text("Update Income (optional)",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.lighttext,
-                                  fontSize: 15)),
-                          SizedBox(height: 10),
-                          CupertinoTextField(
-                            controller: incomeController,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(6)),
-                            cursorColor: AppColors.themeColor,
-                            autofocus: true,
-                            style: const TextStyle(color: AppColors.darkBack),
-                            keyboardType: TextInputType.number,
-                          ),
                           SizedBox(height: 20),
                           ElevatedButton(
                               style: ButtonStyle(
@@ -224,6 +214,9 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                 var expense = Expenses(
                                     amt: int.parse(expenseController.text),
                                     type: typeData,
+                                    income: (incomeController.text == null)
+                                        ? 0
+                                        : int.parse(incomeController.text),
                                     creationDate: DateTime.now());
                                 addData(expense);
                               },

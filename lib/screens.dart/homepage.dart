@@ -16,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int total = 0;
+  int totalIncome = 0;
   int totalFood = 0;
   int totalLeisure = 0;
   int totalRents = 0;
@@ -27,6 +28,17 @@ class _HomePageState extends State<HomePage> {
         total = 0;
       } else {
         total = totalExpense;
+      }
+    });
+  }
+
+  void calcTotalIncome() async {
+    var totalExpense = (await db.totalIncome())[0]['TOTAL'];
+    setState(() {
+      if (totalExpense == null) {
+        total = 0;
+      } else {
+        totalIncome = totalExpense;
       }
     });
   }
@@ -83,6 +95,8 @@ class _HomePageState extends State<HomePage> {
     calcTotalLeisure();
     calcTotalRents();
     calcTotalOthers();
+
+    calcTotalIncome();
     calcTotal();
 
     super.initState();
@@ -90,6 +104,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    int totalSvaings = totalIncome - total;
     final topColor = Theme.of(context).brightness;
     return Scaffold(
         appBar: AppBar(
@@ -368,7 +383,7 @@ class _HomePageState extends State<HomePage> {
                                 color: topColor == Brightness.dark
                                     ? Colors.white
                                     : AppColors.darkBack)),
-                        Text("300",
+                        Text(totalIncome.toString(),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 30,
@@ -398,12 +413,16 @@ class _HomePageState extends State<HomePage> {
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 20,
-                                        color: AppColors.positive)),
-                                Text("18.69",
+                                        color: totalSvaings < 0
+                                            ? AppColors.secondary
+                                            : AppColors.positive)),
+                                Text(totalSvaings.toString(),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 30,
-                                        color: AppColors.positive))
+                                        color: totalSvaings < 0
+                                            ? AppColors.secondary
+                                            : AppColors.positive))
                               ],
                             ),
                           ],

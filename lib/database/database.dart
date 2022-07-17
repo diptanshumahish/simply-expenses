@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -123,6 +122,13 @@ CREATE TABLE expense(
     final db = await database;
     var result = await db.rawQuery(
         "SELECT SUM(amt) AS TOTAL FROM expense WHERE type = 'Others'");
+
+    return result.toList();
+  }
+
+  Future totalIncome() async {
+    final db = await database;
+    var result = await db.rawQuery("SELECT SUM(income) AS TOTAL FROM expense ");
 
     return result.toList();
   }

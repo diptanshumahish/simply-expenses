@@ -1,5 +1,6 @@
 import 'package:expense_tracker/screens.dart/addexpensedata.dart';
 import 'package:expense_tracker/screens.dart/expenselist.dart';
+import 'package:expense_tracker/screens.dart/homepage.dart';
 import 'package:expense_tracker/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,8 @@ class _ExpensesPageState extends State<ExpensesPage> {
         backgroundColor: Colors.transparent,
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: ((context) => HomePage())));
             },
             icon: Icon(CupertinoIcons.back,
                 color: topColor == Brightness.dark
