@@ -512,7 +512,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Column(
                           children: [
-                            (totalSvaings > 0)
+                            (totalSvaings > 0 || totalSvaings == 0)
                                 ? Icon(
                                     Icons.mood,
                                     size: 80,
