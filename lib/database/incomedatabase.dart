@@ -6,10 +6,21 @@ import 'package:sqflite/sqflite.dart';
 class Income {
   int? id;
   int? income;
+  String source;
+  DateTime creationDate;
 
-  Income({required this.id, required this.income});
+  Income(
+      {required this.id,
+      required this.income,
+      required this.source,
+      required this.creationDate});
   Map<String, dynamic> toMap() {
-    return {'id': id, 'income': income};
+    return {
+      'id': id,
+      'income': income,
+      'source': source,
+      'creationDate': creationDate.toString(),
+    };
   }
 }
 
@@ -28,6 +39,8 @@ class IncomeConnect {
   CREATE TABLE income(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     income INTEGER
+    source TEXT
+    creationDate TEXT,
   )
 ''');
   }
@@ -52,8 +65,14 @@ class IncomeConnect {
         await db.query('income', orderBy: 'id DESC');
 
     //convert maps to list of expenses
-    return List.generate(items.length,
-        (i) => Income(id: items[i]['id'], income: items[i]['income']));
+    return List.generate(
+      items.length,
+      (i) => Income(
+          creationDate: DateTime.parse(items[i]['creationDate']),
+          id: items[i]['id'],
+          income: items[i]['income'],
+          source: items[i]['source']),
+    );
   }
 
   Future totalIncome() async {

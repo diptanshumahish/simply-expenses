@@ -23,7 +23,6 @@ class _AddExpenseDataState extends State<AddExpenseData> {
   }
 
   final expenseController = TextEditingController();
-  final incomeController = TextEditingController();
 
   var type = null;
   bool value1 = false;
@@ -38,7 +37,6 @@ class _AddExpenseDataState extends State<AddExpenseData> {
       child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
           child: Scaffold(
-              resizeToAvoidBottomInset: false,
               backgroundColor: Colors.transparent,
               body: Center(
                 child: Container(
@@ -47,7 +45,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                             ? AppColors.darkBack
                             : AppColors.lighttext,
                         borderRadius: BorderRadius.circular(8)),
-                    height: MediaQuery.of(context).size.height * 0.80,
+                    height: MediaQuery.of(context).size.height * 0.60,
                     width: MediaQuery.of(context).size.width * 0.85,
                     child: Padding(
                       padding: const EdgeInsets.all(18.0),
@@ -204,7 +202,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                     value3 = false;
                                     value2 = false;
                                   })),
-                          SizedBox(height: 20),
+                          SizedBox(height: 10),
                           ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(
@@ -214,11 +212,12 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                 var expense = Expenses(
                                     amt: int.parse(expenseController.text),
                                     type: typeData,
-                                    income: (incomeController.text == null)
-                                        ? 0
-                                        : int.parse(incomeController.text),
                                     creationDate: DateTime.now());
                                 addData(expense);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ExpensesPage()));
                               },
                               child: const Center(
                                 child: Padding(

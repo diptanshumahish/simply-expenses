@@ -1,8 +1,8 @@
 import 'package:expense_tracker/database/database.dart';
-import 'package:expense_tracker/main.dart';
+import 'package:expense_tracker/database/incomedatabase.dart';
 import 'package:expense_tracker/screens.dart/drawer.dart';
-import 'package:expense_tracker/screens.dart/expenselist.dart';
 import 'package:expense_tracker/screens.dart/expensescreen.dart';
+import 'package:expense_tracker/screens.dart/incomescreen.dart';
 import 'package:expense_tracker/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void calcTotalIncome() async {
-    var totalExpense = (await db.totalIncome())[0]['TOTAL'];
+    var totalExpense = (await indb.totalIncome())[0]['TOTAL'];
     setState(() {
       if (totalExpense == null) {
         total = 0;
@@ -88,6 +88,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   var db = DatabaseConnect();
+  var indb = IncomeConnect();
 
   @override
   void initState() {
@@ -389,7 +390,40 @@ class _HomePageState extends State<HomePage> {
                                 fontSize: 30,
                                 color: topColor == Brightness.dark
                                     ? Colors.white
-                                    : AppColors.darkBack))
+                                    : AppColors.darkBack)),
+                        Spacer(),
+                        InkWell(
+                          customBorder: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => IncomeScreen()));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: AppColors.sec,
+                                borderRadius: BorderRadius.circular(8)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    CupertinoIcons.money_dollar,
+                                    color: AppColors.darkBack,
+                                  ),
+                                  Text("Track Income",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 15,
+                                          color: AppColors.darkBack))
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                     SizedBox(height: 20),
