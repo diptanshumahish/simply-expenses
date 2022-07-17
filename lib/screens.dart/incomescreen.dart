@@ -40,17 +40,24 @@ class _IncomeScreenState extends State<IncomeScreen> {
                     : AppColors.darkBack)),
         elevation: 0,
       ),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [IncomeList()],
+      body: Scrollbar(
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [IncomeList()],
+            ),
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text("Update Income"),
+        icon: Icon(CupertinoIcons.add_circled_solid),
+        backgroundColor: AppColors.themeColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         onPressed: () {
           showGeneralDialog(
             barrierLabel: "Label",

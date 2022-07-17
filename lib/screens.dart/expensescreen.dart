@@ -38,19 +38,24 @@ class _ExpensesPageState extends State<ExpensesPage> {
                     : AppColors.darkBack)),
         elevation: 0,
       ),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [ExpenseList()],
+      body: Scrollbar(
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [ExpenseList()],
+            ),
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        isExtended: true,
-        child: Row(children: [Icon(CupertinoIcons.add)]),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: AppColors.themeColor,
+        label: Text("Add Expenses"),
+        icon: Icon(CupertinoIcons.add_circled_solid),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         onPressed: () {
           showGeneralDialog(
             barrierLabel: "Label",
