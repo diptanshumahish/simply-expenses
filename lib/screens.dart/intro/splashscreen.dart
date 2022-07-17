@@ -37,9 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
         transitionDuration: const Duration(milliseconds: 600),
         context: context,
         pageBuilder: (context, anim1, anim2) {
-          return (username == null || currency == null)
-              ? const LoginPage()
-              : HomePage();
+          return (username == 0) ? const LoginPage() : HomePage();
         },
       );
     }));

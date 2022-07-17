@@ -19,14 +19,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void loadPref() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      username = (prefs.getString("name") ?? 0);
-      currency = (prefs.getString("currency") ?? 0);
-    });
-  }
-
   double total = 0;
   int totalIncome = 0;
   double totalFood = 0;
@@ -101,6 +93,13 @@ class _HomePageState extends State<HomePage> {
 
   var db = DatabaseConnect();
   var indb = IncomeConnect();
+  void loadPref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      username = (prefs.getString("name") ?? 0);
+      currency = (prefs.getString("currency") ?? 0);
+    });
+  }
 
   @override
   void initState() {
@@ -109,7 +108,6 @@ class _HomePageState extends State<HomePage> {
     calcTotalLeisure();
     calcTotalRents();
     calcTotalOthers();
-
     calcTotalIncome();
     calcTotal();
 
@@ -212,7 +210,7 @@ class _HomePageState extends State<HomePage> {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text(currency,
+                                  Text(currency.toString(),
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 20,
@@ -296,7 +294,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  currency,
+                                  currency.toString(),
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
@@ -328,7 +326,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  currency,
+                                  currency.toString(),
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
@@ -360,7 +358,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  currency,
+                                  currency.toString(),
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
@@ -393,7 +391,7 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  currency,
+                                  currency.toString(),
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
@@ -426,7 +424,7 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(currency,
+                        Text(currency.toString(),
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 20,
@@ -460,7 +458,7 @@ class _HomePageState extends State<HomePage> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(currency,
+                                  Text(currency.toString(),
                                       style: TextStyle(
                                           fontSize: 15,
                                           color: AppColors.darkBack)),
@@ -494,7 +492,7 @@ class _HomePageState extends State<HomePage> {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(currency,
+                                Text(currency.toString(),
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 20,

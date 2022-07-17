@@ -1,3 +1,4 @@
+import 'package:expense_tracker/screens.dart/homepage.dart';
 import 'package:expense_tracker/shared/sharedpreferenecs.dart';
 import 'package:expense_tracker/utils/theme.dart';
 import 'package:flutter/material.dart';
@@ -265,8 +266,11 @@ class _LoginPageState extends State<LoginPage> {
                                   setState(() {
                                     saveData(name);
                                     saveDataCurrency(currency);
-                                    print(name);
-                                    print(currency);
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: ((context) =>
+                                                HomePage())));
                                   });
                                 },
                                 child: const Center(
