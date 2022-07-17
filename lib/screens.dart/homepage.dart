@@ -15,12 +15,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int total = 0;
+  double total = 0;
   int totalIncome = 0;
-  int totalFood = 0;
-  int totalLeisure = 0;
-  int totalRents = 0;
-  int totalOthers = 0;
+  double totalFood = 0;
+  double totalLeisure = 0;
+  double totalRents = 0;
+  double totalOthers = 0;
   void calcTotal() async {
     var totalExpense = (await db.totalExpense())[0]['TOTAL'];
     setState(() {
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    int totalSvaings = totalIncome - total;
+    double totalSvaings = totalIncome - total;
     final topColor = Theme.of(context).brightness;
     return Scaffold(
         appBar: AppBar(
@@ -462,7 +462,19 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         Column(
-                          children: [Icon(CupertinoIcons.smiley, size: 100)],
+                          children: [
+                            (totalSvaings > 0)
+                                ? Icon(
+                                    Icons.mood,
+                                    size: 80,
+                                    color: AppColors.positive,
+                                  )
+                                : Icon(
+                                    Icons.mood_bad,
+                                    color: AppColors.secondary,
+                                    size: 80,
+                                  )
+                          ],
                         )
                       ],
                     ),
@@ -485,7 +497,7 @@ class _HomePageState extends State<HomePage> {
                                   Icon(Icons.payment),
                                   SizedBox(height: 10),
                                   Text(
-                                    "Track Expenses",
+                                    "Add Expenses",
                                     style: TextStyle(
                                         fontSize: 17, color: Colors.white),
                                   )
@@ -507,7 +519,7 @@ class _HomePageState extends State<HomePage> {
                                   Icon(Icons.upcoming),
                                   SizedBox(height: 10),
                                   Text(
-                                    "Update Details",
+                                    "Add Earnings",
                                     style: TextStyle(
                                         fontSize: 17, color: Colors.white),
                                   )

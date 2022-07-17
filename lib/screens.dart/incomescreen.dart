@@ -1,3 +1,6 @@
+import 'package:expense_tracker/screens.dart/addincomedata.dart';
+import 'package:expense_tracker/screens.dart/incomelist.dart';
+import 'package:expense_tracker/utils/incomecards.dart';
 import 'package:expense_tracker/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +39,38 @@ class _IncomeScreenState extends State<IncomeScreen> {
                     ? Colors.white
                     : AppColors.darkBack)),
         elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [IncomeList()],
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showGeneralDialog(
+            barrierLabel: "Label",
+            barrierDismissible: false,
+            barrierColor: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+            transitionDuration: const Duration(milliseconds: 350),
+            context: context,
+            pageBuilder: (context, anim1, anim2) {
+              return AddIncomeData();
+            },
+            transitionBuilder: (context, anim1, anim2, child) {
+              return SlideTransition(
+                position:
+                    Tween(begin: const Offset(0, 1), end: const Offset(0, 0))
+                        .animate(anim1),
+                child: child,
+              );
+            },
+          );
+        },
       ),
     );
   }

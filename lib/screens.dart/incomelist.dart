@@ -36,6 +36,7 @@ class _IncomeListState extends State<IncomeList> {
                   itemBuilder: ((context, i) => AddIncome(
                       id: data[i].id,
                       source: data[i].source,
+                      income: data[i].inc,
                       creationDate: data[i].creationDate)));
         });
   }

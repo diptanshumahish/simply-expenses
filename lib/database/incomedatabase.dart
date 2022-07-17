@@ -5,19 +5,19 @@ import 'package:sqflite/sqflite.dart';
 
 class Income {
   int? id;
-  int? income;
+  int? inc;
   String source;
   DateTime creationDate;
 
   Income(
-      {required this.id,
-      required this.income,
+      {this.id,
+      required this.inc,
       required this.source,
       required this.creationDate});
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'income': income,
+      'income': inc,
       'source': source,
       'creationDate': creationDate.toString(),
     };
@@ -38,9 +38,9 @@ class IncomeConnect {
     await db.execute('''
   CREATE TABLE income(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    income INTEGER
-    source TEXT
-    creationDate TEXT,
+    income INTEGER,
+    source TEXT,
+    creationDate TEXT
   )
 ''');
   }
@@ -48,8 +48,10 @@ class IncomeConnect {
   //ADD INCOME DATA
   Future<void> insertIncome(Income income) async {
     final db = await database;
-    await db.insert('income', income.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace);
+    await db.insert(
+      'income',
+      income.toMap(),
+    );
   }
 
   //DELETING INCOME DATA
@@ -70,7 +72,7 @@ class IncomeConnect {
       (i) => Income(
           creationDate: DateTime.parse(items[i]['creationDate']),
           id: items[i]['id'],
-          income: items[i]['income'],
+          inc: items[i]['income'],
           source: items[i]['source']),
     );
   }

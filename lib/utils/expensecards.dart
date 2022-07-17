@@ -9,7 +9,7 @@ import 'package:intl/intl.dart';
 
 class AddExpenses extends StatefulWidget {
   final int id;
-  final int amt;
+  final double amt;
   final String type;
   final DateTime creationDate;
 
@@ -57,7 +57,6 @@ class _AddExpensesState extends State<AddExpenses> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          height: MediaQuery.of(context).size.height / 10,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             color: topColor == Brightness.dark

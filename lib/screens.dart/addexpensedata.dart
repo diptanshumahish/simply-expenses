@@ -43,7 +43,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                     decoration: BoxDecoration(
                         color: topColor == Brightness.dark
                             ? AppColors.darkBack
-                            : AppColors.lighttext,
+                            : Color.fromARGB(255, 218, 213, 213),
                         borderRadius: BorderRadius.circular(8)),
                     height: MediaQuery.of(context).size.height * 0.60,
                     width: MediaQuery.of(context).size.width * 0.85,
@@ -68,7 +68,9 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                   Text(
                                     "Add Expense data",
                                     style: TextStyle(
-                                        color: AppColors.lighttext,
+                                        color: topColor == Brightness.dark
+                                            ? AppColors.lighttext
+                                            : AppColors.darkBack,
                                         fontSize: 20),
                                   ),
                                 ],
@@ -79,13 +81,17 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                           Container(
                             height: 1,
                             width: MediaQuery.of(context).size.width,
-                            color: AppColors.lighttext,
+                            color: topColor == Brightness.dark
+                                ? AppColors.lighttext
+                                : AppColors.darkBack,
                           ),
                           SizedBox(height: 20),
                           Text("Enter spent Amount",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  color: AppColors.lighttext,
+                                  color: topColor == Brightness.dark
+                                      ? AppColors.lighttext
+                                      : AppColors.darkBack,
                                   fontSize: 15)),
                           SizedBox(height: 10),
                           CupertinoTextField(
@@ -102,13 +108,17 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                           Text("Type of expenditure:",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  color: AppColors.lighttext,
+                                  color: topColor == Brightness.dark
+                                      ? AppColors.lighttext
+                                      : AppColors.darkBack,
                                   fontSize: 15)),
                           GFCheckboxListTile(
                               title: Text("Food",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
-                                      color: AppColors.lighttext,
+                                      color: topColor == Brightness.dark
+                                          ? AppColors.lighttext
+                                          : AppColors.darkBack,
                                       fontSize: 13)),
                               type: GFCheckboxType.circle,
                               activeIcon: Icon(
@@ -143,7 +153,9 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                               title: Text("Leisure",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
-                                      color: AppColors.lighttext,
+                                      color: topColor == Brightness.dark
+                                          ? AppColors.lighttext
+                                          : AppColors.darkBack,
                                       fontSize: 13)),
                               value: value2,
                               onChanged: (value) => setState(() {
@@ -168,7 +180,9 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                               title: Text("Rents",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
-                                      color: AppColors.lighttext,
+                                      color: topColor == Brightness.dark
+                                          ? AppColors.lighttext
+                                          : AppColors.darkBack,
                                       fontSize: 13)),
                               value: value3,
                               onChanged: (value) => setState(() {
@@ -192,7 +206,9 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                               title: Text("Others",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
-                                      color: AppColors.lighttext,
+                                      color: topColor == Brightness.dark
+                                          ? AppColors.lighttext
+                                          : AppColors.darkBack,
                                       fontSize: 13)),
                               value: value4,
                               onChanged: (value) => setState(() {
