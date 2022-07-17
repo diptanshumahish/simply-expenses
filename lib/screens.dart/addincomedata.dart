@@ -36,7 +36,7 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                           ? AppColors.darkBack
                           : AppColors.lighttext,
                       borderRadius: BorderRadius.circular(8)),
-                  height: MediaQuery.of(context).size.height * 0.60,
+                  height: MediaQuery.of(context).size.height * 0.50,
                   width: MediaQuery.of(context).size.width * 0.85,
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),

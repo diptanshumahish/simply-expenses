@@ -144,74 +144,110 @@ class _HomePageState extends State<HomePage> {
           children: [
             Padding(
               padding: const EdgeInsets.all(18.0),
-              child: Container(
-                height: 200,
-                width: MediaQuery.of(context).size.width * 90,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.themeColor),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Column(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Total Expenses",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                              color: Colors.white)),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text("\u{0024}",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 20,
-                                      color: AppColors.lighttext)),
-                              Text(total.toString(),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30,
-                                      color: AppColors.lighttext))
-                            ],
-                          ),
-                          Icon(CupertinoIcons.checkmark_alt_circle_fill,
-                              color: Colors.white)
-                        ],
+                      Text(
+                        "Welcome!",
+                        style: TextStyle(
+                            color: topColor == Brightness.dark
+                                ? Colors.white
+                                : AppColors.darkBack,
+                            fontSize: 25),
                       ),
-                      SizedBox(height: 30),
-                      Text("Alerts:",
+                      Text("Usernamensdfdshjshjahfahkfhaskfhaksfh,",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20,
-                              color: AppColors.lighttext)),
-                      Text("None , All good :)",
-                          style: TextStyle(fontSize: 18, color: AppColors.sec)),
-                      Spacer(),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => ExpensesPage())));
-                        },
-                        child: Row(
-                          children: [
-                            Icon(CupertinoIcons.forward),
-                            Text("Track Expenses",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17,
-                                    color: AppColors.darkBack))
-                          ],
-                        ),
-                      )
+                              overflow: TextOverflow.ellipsis,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.themeColor,
+                              fontSize: 35)),
+                      Text("Hope you are doing well :)",
+                          style: TextStyle(
+                              color: topColor == Brightness.dark
+                                  ? Colors.white
+                                  : AppColors.darkBack,
+                              fontSize: 25))
                     ],
                   ),
-                ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width * 90,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: AppColors.themeColor),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Total Expenses",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                  color: Colors.white)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text("\u{0024}",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 20,
+                                          color: AppColors.lighttext)),
+                                  Text(total.toString(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 30,
+                                          color: AppColors.lighttext))
+                                ],
+                              ),
+                              Icon(CupertinoIcons.checkmark_alt_circle_fill,
+                                  color: Colors.white)
+                            ],
+                          ),
+                          SizedBox(height: 30),
+                          Text("Alerts:",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 20,
+                                  color: AppColors.lighttext)),
+                          Text("None , All good :)",
+                              style: TextStyle(
+                                  fontSize: 18, color: AppColors.sec)),
+                          Spacer(),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) => ExpensesPage())));
+                            },
+                            child: Row(
+                              children: [
+                                Icon(CupertinoIcons.forward),
+                                Text("Track Expenses",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17,
+                                        color: AppColors.darkBack))
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             Padding(
