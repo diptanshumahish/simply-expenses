@@ -1,7 +1,5 @@
-import 'package:expense_tracker/screens.dart/homepage.dart';
-import 'package:expense_tracker/screens.dart/intro/loginpage.dart';
 import 'package:expense_tracker/screens.dart/intro/splashscreen.dart';
-import 'package:expense_tracker/utils/theme.dart';
+import 'package:expense_tracker/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Apptheme.light(),
       darkTheme: Apptheme.dark(),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

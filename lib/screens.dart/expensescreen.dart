@@ -1,7 +1,7 @@
 import 'package:expense_tracker/screens.dart/addexpensedata.dart';
 import 'package:expense_tracker/screens.dart/expenselist.dart';
 import 'package:expense_tracker/screens.dart/homepage.dart';
-import 'package:expense_tracker/utils/theme.dart';
+import 'package:expense_tracker/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +30,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
         leading: IconButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => HomePage())));
+                  MaterialPageRoute(builder: ((context) => const HomePage())));
             },
             icon: Icon(CupertinoIcons.back,
                 color: topColor == Brightness.dark
@@ -40,12 +40,12 @@ class _ExpensesPageState extends State<ExpensesPage> {
       ),
       body: Scrollbar(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [ExpenseList()],
+              children: const [ExpenseList()],
             ),
           ),
         ),
@@ -53,8 +53,8 @@ class _ExpensesPageState extends State<ExpensesPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: AppColors.themeColor,
-        label: Text("Add Expenses"),
-        icon: Icon(CupertinoIcons.add_circled_solid),
+        label: const Text("Add Expenses"),
+        icon: const Icon(CupertinoIcons.add_circled_solid),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         onPressed: () {
           showGeneralDialog(
@@ -64,7 +64,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
             transitionDuration: const Duration(milliseconds: 350),
             context: context,
             pageBuilder: (context, anim1, anim2) {
-              return AddExpenseData();
+              return const AddExpenseData();
             },
             transitionBuilder: (context, anim1, anim2, child) {
               return SlideTransition(

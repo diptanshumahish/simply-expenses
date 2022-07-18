@@ -6,13 +6,13 @@ import 'package:expense_tracker/screens.dart/drawer.dart';
 import 'package:expense_tracker/screens.dart/expensescreen.dart';
 import 'package:expense_tracker/screens.dart/incomescreen.dart';
 import 'package:expense_tracker/shared/sharedpreferenecs.dart';
-import 'package:expense_tracker/utils/theme.dart';
+import 'package:expense_tracker/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({
+  const HomePage({
     Key? key,
   }) : super(key: key);
 
@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.transparent,
           title: Row(
             children: [
-              Text("Simply ",
+              const Text("Simply ",
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
@@ -156,9 +156,9 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        drawer: AppDrawer(),
+        drawer: const AppDrawer(),
         body: ListView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           children: [
             Padding(
@@ -180,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                       Text(username.toString(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
+                          style: const TextStyle(
                               overflow: TextOverflow.ellipsis,
                               fontWeight: FontWeight.bold,
                               color: AppColors.themeColor,
@@ -193,7 +193,7 @@ class _HomePageState extends State<HomePage> {
                               fontSize: 25))
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Container(
@@ -239,7 +239,7 @@ class _HomePageState extends State<HomePage> {
                               )
                             ],
                           ),
-                          SizedBox(height: 30),
+                          const SizedBox(height: 30),
                           Text("Alerts:",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
@@ -252,13 +252,14 @@ class _HomePageState extends State<HomePage> {
                               style: TextStyle(
                                   fontSize: width < 600 ? 18 : 25,
                                   color: AppColors.lighttext)),
-                          Spacer(),
+                          const Spacer(),
                           InkWell(
                             onTap: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: ((context) => ExpensesPage())));
+                                      builder: ((context) =>
+                                          const ExpensesPage())));
                             },
                             child: Container(
                               height: width < 600 ? 30 : 50,
@@ -268,7 +269,7 @@ class _HomePageState extends State<HomePage> {
                                   color: AppColors.darkBack.withOpacity(0.2)),
                               child: Row(
                                 children: [
-                                  Icon(CupertinoIcons.forward),
+                                  const Icon(CupertinoIcons.forward),
                                   Text("Track Expenses",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -298,7 +299,7 @@ class _HomePageState extends State<HomePage> {
                           color: topColor == Brightness.dark
                               ? Colors.white
                               : AppColors.darkBack)),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -487,7 +488,7 @@ class _HomePageState extends State<HomePage> {
                                 color: topColor == Brightness.dark
                                     ? Colors.white
                                     : AppColors.darkBack)),
-                        Spacer(),
+                        const Spacer(),
                         InkWell(
                           customBorder: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
@@ -496,7 +497,8 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => IncomeScreen()));
+                                    builder: (context) =>
+                                        const IncomeScreen()));
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -508,10 +510,10 @@ class _HomePageState extends State<HomePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(currency.toString(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 15,
                                           color: AppColors.darkBack)),
-                                  SizedBox(width: 5),
+                                  const SizedBox(width: 5),
                                   Text("Track Income",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
@@ -524,7 +526,7 @@ class _HomePageState extends State<HomePage> {
                         )
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -562,12 +564,12 @@ class _HomePageState extends State<HomePage> {
                         Column(
                           children: [
                             (totalSvaings > 0 || totalSvaings == 0)
-                                ? Icon(
+                                ? const Icon(
                                     Icons.mood,
                                     size: 80,
                                     color: AppColors.positive,
                                   )
-                                : Icon(
+                                : const Icon(
                                     Icons.mood_bad,
                                     color: AppColors.secondary,
                                     size: 80,
@@ -576,7 +578,7 @@ class _HomePageState extends State<HomePage> {
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Row(
@@ -592,7 +594,7 @@ class _HomePageState extends State<HomePage> {
                                   const Duration(milliseconds: 350),
                               context: context,
                               pageBuilder: (context, anim1, anim2) {
-                                return AddExpenseData();
+                                return const AddExpenseData();
                               },
                               transitionBuilder:
                                   (context, anim1, anim2, child) {
@@ -621,7 +623,7 @@ class _HomePageState extends State<HomePage> {
                                       Icons.payment,
                                       size: width < 600 ? 20 : 30,
                                     ),
-                                    SizedBox(height: 10),
+                                    const SizedBox(height: 10),
                                     Text(
                                       "Add Expenses",
                                       style: TextStyle(
@@ -632,7 +634,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               )),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         InkWell(
                           onTap: () {
                             showGeneralDialog(
@@ -644,7 +646,7 @@ class _HomePageState extends State<HomePage> {
                                   const Duration(milliseconds: 350),
                               context: context,
                               pageBuilder: (context, anim1, anim2) {
-                                return AddIncomeData();
+                                return const AddIncomeData();
                               },
                               transitionBuilder:
                                   (context, anim1, anim2, child) {
@@ -673,7 +675,7 @@ class _HomePageState extends State<HomePage> {
                                       Icons.upcoming,
                                       size: width < 600 ? 20 : 30,
                                     ),
-                                    SizedBox(height: 10),
+                                    const SizedBox(height: 10),
                                     Text(
                                       "Add Earnings",
                                       style: TextStyle(

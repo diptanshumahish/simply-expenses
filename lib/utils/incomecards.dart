@@ -1,7 +1,7 @@
 import 'package:expense_tracker/database/incomedatabase.dart';
 import 'package:expense_tracker/screens.dart/incomescreen.dart';
 import 'package:expense_tracker/shared/sharedpreferenecs.dart';
-import 'package:expense_tracker/utils/theme.dart';
+import 'package:expense_tracker/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -48,13 +48,15 @@ class _AddIncomeState extends State<AddIncome> {
     }
 
     return Slidable(
-      endActionPane: ActionPane(motion: DrawerMotion(), children: [
+      endActionPane: ActionPane(motion: const DrawerMotion(), children: [
         SlidableAction(
           onPressed: (context) {
             deleteIncome(toDeleteIncome);
             setState(() {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: ((context) => IncomeScreen())));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => const IncomeScreen())));
             });
           },
           icon: CupertinoIcons.delete,
@@ -98,19 +100,21 @@ class _AddIncomeState extends State<AddIncome> {
                     )
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       currency,
-                      style: TextStyle(color: AppColors.positive, fontSize: 15),
+                      style: const TextStyle(
+                          color: AppColors.positive, fontSize: 15),
                     ),
-                    SizedBox(width: 3),
+                    const SizedBox(width: 3),
                     Text(
                       widget.income.toString(),
-                      style: TextStyle(color: AppColors.positive, fontSize: 20),
+                      style: const TextStyle(
+                          color: AppColors.positive, fontSize: 20),
                     )
                   ],
                 )

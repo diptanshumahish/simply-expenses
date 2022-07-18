@@ -1,6 +1,6 @@
 import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/utils/expensecards.dart';
-import 'package:expense_tracker/utils/theme.dart';
+import 'package:expense_tracker/theme.dart';
 import 'package:flutter/material.dart';
 
 class ExpenseList extends StatefulWidget {
@@ -28,7 +28,7 @@ class _ExpenseListState extends State<ExpenseList> {
 
     return FutureBuilder(
         future: db.getExpenses(),
-        initialData: [],
+        initialData: const [],
         builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
           var data = snapshot.data;
           var dataLength = data!.length;

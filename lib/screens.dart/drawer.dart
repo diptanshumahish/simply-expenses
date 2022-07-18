@@ -2,7 +2,7 @@ import 'package:expense_tracker/screens.dart/expensescreen.dart';
 import 'package:expense_tracker/screens.dart/incomescreen.dart';
 import 'package:expense_tracker/screens.dart/intro/loginpage.dart';
 import 'package:expense_tracker/shared/sharedpreferenecs.dart';
-import 'package:expense_tracker/utils/theme.dart';
+import 'package:expense_tracker/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,7 +42,7 @@ class _AppDrawerState extends State<AppDrawer> {
           Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 3.5,
-              decoration: BoxDecoration(color: AppColors.themeColor),
+              decoration: const BoxDecoration(color: AppColors.themeColor),
               child: Stack(
                 children: [
                   Positioned(
@@ -61,26 +61,20 @@ class _AppDrawerState extends State<AppDrawer> {
                                 username,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
                                     color: AppColors.lighttext),
                               ),
-                              Icon(CupertinoIcons.chevron_forward)
+                              Icon(
+                                CupertinoIcons.chevron_forward,
+                                color: topColor == Brightness.light
+                                    ? AppColors.lighttext
+                                    : AppColors.darkBack,
+                              )
                             ],
                           ),
                         ),
-                      )),
-                  Positioned(
-                      top: MediaQuery.of(context).size.height / 18,
-                      right: 0,
-                      child: IconButton(
-                        icon: Icon(
-                          CupertinoIcons.moon_circle_fill,
-                          color: AppColors.lighttext,
-                          size: 30,
-                        ),
-                        onPressed: () {},
                       )),
                   Positioned(
                       top: MediaQuery.of(context).size.height / 14,
@@ -88,7 +82,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Text("Simply",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -114,8 +108,10 @@ class _AppDrawerState extends State<AppDrawer> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
-              onTap: () => Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: ((context) => ExpensesPage()))),
+              onTap: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => const ExpensesPage()))),
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
@@ -148,8 +144,10 @@ class _AppDrawerState extends State<AppDrawer> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
-              onTap: () => Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: ((context) => IncomeScreen()))),
+              onTap: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => const IncomeScreen()))),
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
@@ -186,7 +184,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 Navigator.pushReplacement(
                     context,
                     (MaterialPageRoute(
-                      builder: (context) => LoginPage(),
+                      builder: (context) => const LoginPage(),
                     )));
               }),
               child: Container(
@@ -200,13 +198,18 @@ class _AppDrawerState extends State<AppDrawer> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Change Preferences ",
-                        style: TextStyle(
-                            fontSize: 26,
-                            color: topColor == Brightness.dark
-                                ? AppColors.lighttext
-                                : AppColors.darkBack),
+                      Flexible(
+                        child: Text(
+                          "Change Preferences ",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: 26,
+                              color: topColor == Brightness.dark
+                                  ? AppColors.lighttext
+                                  : AppColors.darkBack),
+                        ),
                       ),
                       Icon(CupertinoIcons.profile_circled,
                           color: topColor == Brightness.dark
@@ -218,7 +221,7 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Padding(
             padding: const EdgeInsets.all(30.0),
             child: Text("Version 1.0.0",

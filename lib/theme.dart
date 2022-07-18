@@ -16,10 +16,10 @@ abstract class Apptheme {
   static ThemeData light() => ThemeData(
         brightness: Brightness.light,
         textTheme: GoogleFonts.interTextTheme().apply(),
-        scaffoldBackgroundColor: Color.fromARGB(255, 255, 255, 255),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
       );
   static ThemeData dark() => ThemeData(
-        scaffoldBackgroundColor: Color(0xFF232324),
+        scaffoldBackgroundColor: const Color(0xFF232324),
         brightness: Brightness.dark,
         textTheme: GoogleFonts.interTextTheme().apply(),
       );

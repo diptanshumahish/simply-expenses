@@ -1,8 +1,7 @@
 import 'package:expense_tracker/database/database.dart';
-import 'package:expense_tracker/screens.dart/expenselist.dart';
 import 'package:expense_tracker/screens.dart/expensescreen.dart';
 import 'package:expense_tracker/shared/sharedpreferenecs.dart';
-import 'package:expense_tracker/utils/theme.dart';
+import 'package:expense_tracker/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -50,13 +49,15 @@ class _AddExpensesState extends State<AddExpenses> {
 
     final topColor = Theme.of(context).brightness;
     return Slidable(
-      endActionPane: ActionPane(motion: DrawerMotion(), children: [
+      endActionPane: ActionPane(motion: const DrawerMotion(), children: [
         SlidableAction(
           onPressed: (context) {
             deleteItem(toDeleteExpense);
             setState(() {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: ((context) => ExpensesPage())));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => const ExpensesPage())));
             });
           },
           icon: CupertinoIcons.delete,
@@ -84,7 +85,7 @@ class _AddExpensesState extends State<AddExpenses> {
                     returnIcon(),
                   ],
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +108,7 @@ class _AddExpensesState extends State<AddExpenses> {
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -164,7 +165,7 @@ class _AddExpensesState extends State<AddExpenses> {
             : AppColors.darkBack,
         size: 30,
       );
-    } else
+    } else {
       return Icon(
         Icons.dynamic_form_outlined,
         color: topColor == Brightness.dark
@@ -172,5 +173,6 @@ class _AddExpensesState extends State<AddExpenses> {
             : AppColors.darkBack,
         size: 30,
       );
+    }
   }
 }

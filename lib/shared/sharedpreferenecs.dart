@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: prefer_typing_uninitialized_variables
 var username;
+// ignore: prefer_typing_uninitialized_variables
 var currency;
 saveData(String name) async {
   final prefs = await SharedPreferences.getInstance();

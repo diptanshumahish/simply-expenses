@@ -1,7 +1,6 @@
 import 'package:expense_tracker/screens.dart/addincomedata.dart';
 import 'package:expense_tracker/screens.dart/incomelist.dart';
-import 'package:expense_tracker/utils/incomecards.dart';
-import 'package:expense_tracker/utils/theme.dart';
+import 'package:expense_tracker/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +31,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
         leading: IconButton(
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => HomePage())));
+                  MaterialPageRoute(builder: ((context) => const HomePage())));
             },
             icon: Icon(CupertinoIcons.back,
                 color: topColor == Brightness.dark
@@ -42,20 +41,20 @@ class _IncomeScreenState extends State<IncomeScreen> {
       ),
       body: Scrollbar(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [IncomeList()],
+              children: const [IncomeList()],
             ),
           ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        label: Text("Update Income"),
-        icon: Icon(CupertinoIcons.add_circled_solid),
+        label: const Text("Update Income"),
+        icon: const Icon(CupertinoIcons.add_circled_solid),
         backgroundColor: AppColors.themeColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         onPressed: () {
@@ -66,7 +65,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
             transitionDuration: const Duration(milliseconds: 350),
             context: context,
             pageBuilder: (context, anim1, anim2) {
-              return AddIncomeData();
+              return const AddIncomeData();
             },
             transitionBuilder: (context, anim1, anim2, child) {
               return SlideTransition(

@@ -1,6 +1,6 @@
 import 'package:expense_tracker/database/incomedatabase.dart';
 import 'package:expense_tracker/utils/incomecards.dart';
-import 'package:expense_tracker/utils/theme.dart';
+import 'package:expense_tracker/theme.dart';
 import 'package:flutter/material.dart';
 
 class IncomeList extends StatefulWidget {
@@ -18,7 +18,7 @@ class _IncomeListState extends State<IncomeList> {
     final topColor = Theme.of(context).brightness;
     return FutureBuilder(
         future: inDb.getIncome(),
-        initialData: [],
+        initialData: const [],
         builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
           var data = snapshot.data;
           var datalength = data!.length;

@@ -1,10 +1,11 @@
 import 'dart:ui';
 import 'package:expense_tracker/database/incomedatabase.dart';
 import 'package:expense_tracker/screens.dart/incomescreen.dart';
-import 'package:expense_tracker/utils/theme.dart';
+import 'package:expense_tracker/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// ignore: prefer_typing_uninitialized_variables
 var newIncome;
 
 class AddIncomeData extends StatefulWidget {
@@ -19,6 +20,7 @@ class _AddIncomeDataState extends State<AddIncomeData> {
   final incomeSourceController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
     var inDb = IncomeConnect();
     void addIncome(Income income) async {
       await inDb.insertIncome(income);
@@ -36,9 +38,11 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                   decoration: BoxDecoration(
                       color: topColor == Brightness.dark
                           ? AppColors.darkBack
-                          : Color.fromARGB(255, 255, 255, 255),
+                          : const Color.fromARGB(255, 255, 255, 255),
                       borderRadius: BorderRadius.circular(8)),
-                  height: MediaQuery.of(context).size.height * 0.35,
+                  height: height < 820
+                      ? height * 0.43
+                      : MediaQuery.of(context).size.height * 0.35,
                   width: MediaQuery.of(context).size.width * 0.85,
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),
@@ -53,7 +57,7 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    icon: Icon(CupertinoIcons.back)),
+                                    icon: const Icon(CupertinoIcons.back)),
                                 Text(
                                   "Add Earnings data",
                                   style: TextStyle(
@@ -64,7 +68,7 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                                 ),
                               ],
                             ),
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
                         Container(
@@ -74,7 +78,7 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                               ? AppColors.lighttext
                               : AppColors.darkBack,
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Text("Enter earnings amount",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
@@ -82,18 +86,18 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                                     ? AppColors.lighttext
                                     : AppColors.darkBack,
                                 fontSize: 18)),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         CupertinoTextField(
                           controller: incomeController,
                           keyboardType: TextInputType.number,
                           decoration: BoxDecoration(
-                              color: Color(0xFFDDDADA),
+                              color: const Color(0xFFDDDADA),
                               borderRadius: BorderRadius.circular(6)),
                           cursorColor: AppColors.themeColor,
                           autofocus: true,
                           style: const TextStyle(color: AppColors.darkBack),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Text("Enter earnings' source",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
@@ -101,26 +105,24 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                                     ? AppColors.lighttext
                                     : AppColors.darkBack,
                                 fontSize: 18)),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         CupertinoTextField(
                           textCapitalization: TextCapitalization.words,
                           controller: incomeSourceController,
                           decoration: BoxDecoration(
-                              color: Color(0xFFDDDADA),
+                              color: const Color(0xFFDDDADA),
                               borderRadius: BorderRadius.circular(6)),
                           cursorColor: AppColors.themeColor,
                           autofocus: true,
                           style: const TextStyle(color: AppColors.darkBack),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(
                                   AppColors.secondary),
                             ),
                             onPressed: () {
-                              print(incomeController.text);
-                              print(incomeSourceController.text);
                               (incomeController.text == "" ||
                                       incomeSourceController.text == "")
                                   ? showDialog(
@@ -154,7 +156,7 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  IncomeScreen())),
+                                                  const IncomeScreen())),
                                     };
                             },
                             child: const Center(

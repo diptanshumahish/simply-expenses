@@ -1,13 +1,12 @@
 import 'package:expense_tracker/screens.dart/homepage.dart';
 import 'package:expense_tracker/shared/sharedpreferenecs.dart';
-import 'package:expense_tracker/utils/theme.dart';
+import 'package:expense_tracker/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getwidget/components/checkbox_list_tile/gf_checkbox_list_tile.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:getwidget/types/gf_checkbox_type.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
+import 'package:getwidget/getwidget.dart';
+
+// ignore: prefer_typing_uninitialized_variables
 var name;
 
 class LoginPage extends StatefulWidget {
@@ -34,9 +33,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     var topColor = Theme.of(context).brightness;
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Stack(
@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Container(
                 decoration: BoxDecoration(
                     color: topColor == Brightness.dark
-                        ? Color(0xFF232324)
+                        ? const Color(0xFF232324)
                         : Colors.white,
                     shape: BoxShape.circle),
                 height: 250,
@@ -100,7 +100,9 @@ class _LoginPageState extends State<LoginPage> {
             if (width < 600)
               Center(
                 child: Container(
-                  height: MediaQuery.of(context).size.height / 1.9,
+                  height: height < 810
+                      ? MediaQuery.of(context).size.height / 1.46
+                      : height / 1.8,
                   width: MediaQuery.of(context).size.width * 0.80,
                   decoration: BoxDecoration(
                     boxShadow: [
@@ -118,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                     borderRadius: BorderRadius.circular(10),
                     color: topColor == Brightness.dark
-                        ? Color(0xFF232324)
+                        ? const Color(0xFF232324)
                         : Colors.white,
                   ),
                   child: Padding(
@@ -185,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           height: MediaQuery.of(context).size.width / 25,
                         ),
-                        Container(
+                        SizedBox(
                           width: MediaQuery.of(context).size.width,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                                       : AppColors.darkBack,
                                 ),
                               ),
-                              SizedBox(height: 20),
+                              SizedBox(height: height < 820 ? 10 : 20),
                               GFCheckboxListTile(
                                   activeBgColor: AppColors.positive,
                                   type: GFCheckboxType.circle,
@@ -220,19 +222,20 @@ class _LoginPageState extends State<LoginPage> {
                                             ? Colors.white
                                             : AppColors.darkBack,
                                       )),
-                                  activeIcon: Icon(Icons.check,
+                                  activeIcon: const Icon(Icons.check,
                                       size: 16, color: AppColors.lighttext),
                                   onChanged: (value) => setState(() {
                                         rupee = value;
                                         yen = false;
                                         euro = false;
                                         dollar = false;
+
                                         currency = "\u{20B9}";
                                       })),
                               GFCheckboxListTile(
                                   activeBgColor: AppColors.positive,
                                   activeBorderColor: Colors.transparent,
-                                  activeIcon: Icon(Icons.check,
+                                  activeIcon: const Icon(Icons.check,
                                       size: 16, color: AppColors.lighttext),
                                   inactiveBorderColor: Colors.transparent,
                                   inactiveBgColor: AppColors.lighttext,
@@ -259,7 +262,7 @@ class _LoginPageState extends State<LoginPage> {
                               GFCheckboxListTile(
                                   activeBorderColor: Colors.transparent,
                                   activeBgColor: AppColors.positive,
-                                  activeIcon: Icon(Icons.check,
+                                  activeIcon: const Icon(Icons.check,
                                       size: 16, color: AppColors.lighttext),
                                   inactiveBorderColor: Colors.transparent,
                                   inactiveBgColor: AppColors.lighttext,
@@ -286,7 +289,7 @@ class _LoginPageState extends State<LoginPage> {
                               GFCheckboxListTile(
                                   activeBgColor: AppColors.positive,
                                   activeBorderColor: Colors.transparent,
-                                  activeIcon: Icon(Icons.check,
+                                  activeIcon: const Icon(Icons.check,
                                       size: 16, color: AppColors.lighttext),
                                   inactiveBorderColor: Colors.transparent,
                                   inactiveBgColor: AppColors.lighttext,
@@ -319,7 +322,8 @@ class _LoginPageState extends State<LoginPage> {
                                         AppColors.secondary),
                                   ),
                                   onPressed: () {
-                                    (nameController.text == 0 || currency == "")
+                                    (nameController.text == "" ||
+                                            currency == "")
                                         ? showDialog(
                                             context: context,
                                             builder: (BuildContext context) =>
@@ -352,13 +356,13 @@ class _LoginPageState extends State<LoginPage> {
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: ((context) =>
-                                                          HomePage())));
+                                                          const HomePage())));
                                             })
                                           };
                                   },
                                   child: Center(
                                     child: Padding(
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                           horizontal: 50, vertical: 5),
                                       child: Text("Let's Go!",
                                           maxLines: 1,
@@ -408,11 +412,11 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Stack(
                         children: [
-                          Positioned(
+                          const Positioned(
                               left: 0,
                               right: 0,
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(8.0),
                                 child: Text(
                                   "Hey there ! Welcome",
                                   style: TextStyle(
@@ -430,7 +434,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
+                                  children: const [
                                     Text("Simply",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
@@ -443,13 +447,13 @@ class _LoginPageState extends State<LoginPage> {
                                             color: Colors.black))
                                   ],
                                 ),
-                                SizedBox(width: 20),
+                                const SizedBox(width: 20),
                                 Container(
                                     height: MediaQuery.of(context).size.height /
                                         4.5,
                                     width: 1,
                                     color: AppColors.lighttext),
-                                SizedBox(
+                                const SizedBox(
                                   width: 20,
                                 ),
                                 Column(
@@ -457,12 +461,12 @@ class _LoginPageState extends State<LoginPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text("Your Name",
+                                    const Text("Your Name",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 30,
                                             color: AppColors.secondary)),
-                                    SizedBox(height: 10),
+                                    const SizedBox(height: 10),
                                     SizedBox(
                                       width: 300,
                                       height: 30,
@@ -475,19 +479,20 @@ class _LoginPageState extends State<LoginPage> {
                                             color: AppColors.lighttext),
                                       ),
                                     ),
-                                    SizedBox(height: 30),
-                                    Text("Choose your preffered currency unit",
+                                    const SizedBox(height: 30),
+                                    const Text(
+                                        "Choose your preffered currency unit",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 25,
                                             color: AppColors.secondary)),
-                                    SizedBox(height: 10),
+                                    const SizedBox(height: 10),
                                     SizedBox(
                                       width: 200,
                                       height: 50,
                                       child: GFCheckboxListTile(
-                                          margin: EdgeInsets.all(2),
-                                          subTitle: Text("INR",
+                                          margin: const EdgeInsets.all(2),
+                                          subTitle: const Text("INR",
                                               style: TextStyle(
                                                   color: AppColors.lighttext)),
                                           activeBgColor: AppColors.positive,
@@ -499,12 +504,12 @@ class _LoginPageState extends State<LoginPage> {
                                           padding: EdgeInsets.zero,
                                           size: 15,
                                           value: rupee,
-                                          title: Text("Rupee \u{20B9}",
+                                          title: const Text("Rupee \u{20B9}",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   color: Colors.white)),
-                                          activeIcon: Icon(Icons.check,
+                                          activeIcon: const Icon(Icons.check,
                                               size: 15,
                                               color: AppColors.lighttext),
                                           onChanged: (value) => setState(() {
@@ -519,8 +524,8 @@ class _LoginPageState extends State<LoginPage> {
                                       width: 200,
                                       height: 50,
                                       child: GFCheckboxListTile(
-                                          margin: EdgeInsets.all(2),
-                                          subTitle: Text("USD",
+                                          margin: const EdgeInsets.all(2),
+                                          subTitle: const Text("USD",
                                               style: TextStyle(
                                                   color: AppColors.lighttext)),
                                           activeBgColor: AppColors.positive,
@@ -532,12 +537,12 @@ class _LoginPageState extends State<LoginPage> {
                                           padding: EdgeInsets.zero,
                                           size: 15,
                                           value: dollar,
-                                          title: Text("Dollar \u{0024}",
+                                          title: const Text("Dollar \u{0024}",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   color: Colors.white)),
-                                          activeIcon: Icon(Icons.check,
+                                          activeIcon: const Icon(Icons.check,
                                               size: 15,
                                               color: AppColors.lighttext),
                                           onChanged: (value) => setState(() {
@@ -552,8 +557,8 @@ class _LoginPageState extends State<LoginPage> {
                                       width: 200,
                                       height: 50,
                                       child: GFCheckboxListTile(
-                                          margin: EdgeInsets.all(2),
-                                          subTitle: Text("YEN",
+                                          margin: const EdgeInsets.all(2),
+                                          subTitle: const Text("YEN",
                                               style: TextStyle(
                                                   color: AppColors.lighttext)),
                                           activeBgColor: AppColors.positive,
@@ -565,12 +570,12 @@ class _LoginPageState extends State<LoginPage> {
                                           padding: EdgeInsets.zero,
                                           size: 15,
                                           value: yen,
-                                          title: Text("Yen \u{00A5}",
+                                          title: const Text("Yen \u{00A5}",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   color: Colors.white)),
-                                          activeIcon: Icon(Icons.check,
+                                          activeIcon: const Icon(Icons.check,
                                               size: 15,
                                               color: AppColors.lighttext),
                                           onChanged: (value) => setState(() {
@@ -585,8 +590,8 @@ class _LoginPageState extends State<LoginPage> {
                                       width: 200,
                                       height: 50,
                                       child: GFCheckboxListTile(
-                                          margin: EdgeInsets.all(2),
-                                          subTitle: Text("EUR",
+                                          margin: const EdgeInsets.all(2),
+                                          subTitle: const Text("EUR",
                                               style: TextStyle(
                                                   color: AppColors.lighttext)),
                                           activeBgColor: AppColors.positive,
@@ -598,12 +603,12 @@ class _LoginPageState extends State<LoginPage> {
                                           padding: EdgeInsets.zero,
                                           size: 15,
                                           value: euro,
-                                          title: Text("Euro \u{20AC}",
+                                          title: const Text("Euro \u{20AC}",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   color: Colors.white)),
-                                          activeIcon: Icon(Icons.check,
+                                          activeIcon: const Icon(Icons.check,
                                               size: 15,
                                               color: AppColors.lighttext),
                                           onChanged: (value) => setState(() {
@@ -621,6 +626,7 @@ class _LoginPageState extends State<LoginPage> {
                                                   AppColors.secondary),
                                         ),
                                         onPressed: () {
+                                          // ignore: unrelated_type_equality_checks
                                           (nameController.text == 0 ||
                                                   currency == "")
                                               ? showDialog(
@@ -658,11 +664,11 @@ class _LoginPageState extends State<LoginPage> {
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: ((context) =>
-                                                                HomePage())));
+                                                                const HomePage())));
                                                   })
                                                 };
                                         },
-                                        child: Center(
+                                        child: const Center(
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
                                                 horizontal: 50, vertical: 5),

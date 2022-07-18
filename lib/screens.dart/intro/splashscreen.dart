@@ -1,7 +1,7 @@
 import 'package:expense_tracker/screens.dart/homepage.dart';
 import 'package:expense_tracker/screens.dart/intro/loginpage.dart';
 import 'package:expense_tracker/shared/sharedpreferenecs.dart';
-import 'package:expense_tracker/utils/theme.dart';
+import 'package:expense_tracker/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
         transitionDuration: const Duration(milliseconds: 600),
         context: context,
         pageBuilder: (context, anim1, anim2) {
-          return (username == 0) ? const LoginPage() : HomePage();
+          return (username == 0) ? const LoginPage() : const HomePage();
         },
       );
     }));
@@ -50,13 +50,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     var topColor = Theme.of(context).brightness;
     return Scaffold(
-      body: Container(
+      body: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Stack(
             children: [
               AnimatedPositioned(
-                duration: Duration(milliseconds: 900),
+                duration: const Duration(milliseconds: 900),
                 curve: Curves.bounceInOut,
                 top: !move ? -1000 : -100,
                 left: -50,
@@ -69,14 +69,14 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               AnimatedPositioned(
-                duration: Duration(milliseconds: 900),
+                duration: const Duration(milliseconds: 900),
                 top: !move ? -1000 : -100,
                 left: -50,
                 curve: Curves.bounceOut,
                 child: Container(
                   decoration: BoxDecoration(
                       color: topColor == Brightness.dark
-                          ? Color(0xFF232324)
+                          ? const Color(0xFF232324)
                           : Colors.white,
                       shape: BoxShape.circle),
                   height: 250,
@@ -84,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               AnimatedPositioned(
-                  duration: Duration(milliseconds: 500),
+                  duration: const Duration(milliseconds: 500),
                   curve: Curves.bounceInOut,
                   right: MediaQuery.of(context).size.width / 8,
                   top: !move ? -500 : -30,
@@ -96,7 +96,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         color: AppColors.themeColor.withAlpha(100)),
                   )),
               AnimatedPositioned(
-                duration: Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 500),
                 curve: Curves.bounceInOut,
                 bottom: !move ? -100 : MediaQuery.of(context).size.height / 6,
                 left: !move ? -100 : MediaQuery.of(context).size.width / 4,
@@ -109,7 +109,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               AnimatedPositioned(
-                duration: Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 500),
                 curve: Curves.easeIn,
                 bottom: !move ? -1000 : -MediaQuery.of(context).size.height / 6,
                 right: -MediaQuery.of(context).size.width / 4,
@@ -132,7 +132,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         Text("Simply",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -154,10 +154,10 @@ class _SplashScreenState extends State<SplashScreen> {
                   right: 0,
                   child: Column(
                     children: [
-                      CupertinoActivityIndicator(
+                      const CupertinoActivityIndicator(
                         color: AppColors.themeColor,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       Text("Version 1.0",

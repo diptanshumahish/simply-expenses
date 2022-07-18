@@ -2,12 +2,12 @@ import 'dart:ui';
 
 import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/screens.dart/expensescreen.dart';
-import 'package:expense_tracker/screens.dart/homepage.dart';
-import 'package:expense_tracker/utils/theme.dart';
+import 'package:expense_tracker/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
+// ignore: prefer_typing_uninitialized_variables
 var newExpense;
 
 class AddExpenseData extends StatefulWidget {
@@ -26,7 +26,8 @@ class _AddExpenseDataState extends State<AddExpenseData> {
 
   final expenseController = TextEditingController();
 
-  var type = null;
+  // ignore: prefer_typing_uninitialized_variables
+  var type;
   bool value1 = false;
   bool value2 = false;
   bool value3 = false;
@@ -35,6 +36,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
   @override
   Widget build(BuildContext context) {
     final topColor = Theme.of(context).brightness;
+    var height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
@@ -45,9 +47,11 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                     decoration: BoxDecoration(
                         color: topColor == Brightness.dark
                             ? AppColors.darkBack
-                            : Color.fromARGB(255, 255, 255, 255),
+                            : const Color.fromARGB(255, 255, 255, 255),
                         borderRadius: BorderRadius.circular(8)),
-                    height: MediaQuery.of(context).size.height * 0.54,
+                    height: height < 820
+                        ? height * 0.66
+                        : MediaQuery.of(context).size.height * 0.54,
                     width: MediaQuery.of(context).size.width * 0.85,
                     child: Padding(
                       padding: const EdgeInsets.all(18.0),
@@ -62,8 +66,8 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                       onPressed: () {
                                         Navigator.pop(context);
                                       },
-                                      icon: Icon(CupertinoIcons.back)),
-                                  Text(
+                                      icon: const Icon(CupertinoIcons.back)),
+                                  const Text(
                                     "Add Expense data",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -72,7 +76,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                   ),
                                 ],
                               ),
-                              Spacer(),
+                              const Spacer(),
                             ],
                           ),
                           Container(
@@ -82,7 +86,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                 ? AppColors.lighttext
                                 : AppColors.darkBack,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Text("Enter spent Amount",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
@@ -90,18 +94,18 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                       ? AppColors.lighttext
                                       : AppColors.darkBack,
                                   fontSize: 18)),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           CupertinoTextField(
                             controller: expenseController,
                             keyboardType: TextInputType.number,
                             decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 233, 229, 229),
+                                color: const Color.fromARGB(255, 233, 229, 229),
                                 borderRadius: BorderRadius.circular(6)),
                             cursorColor: AppColors.themeColor,
                             autofocus: true,
                             style: const TextStyle(color: AppColors.darkBack),
                           ),
-                          SizedBox(height: 25),
+                          const SizedBox(height: 25),
                           Text("Type of expenditure:",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
@@ -118,13 +122,13 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                           : AppColors.darkBack,
                                       fontSize: 16)),
                               type: GFCheckboxType.circle,
-                              activeIcon: Icon(
+                              activeIcon: const Icon(
                                 Icons.check,
                                 size: 16,
                                 color: Colors.white,
                               ),
                               size: 20,
-                              inactiveBgColor: Color(0xFFDFDDDD),
+                              inactiveBgColor: const Color(0xFFDFDDDD),
                               activeBorderColor: Colors.transparent,
                               inactiveBorderColor: Colors.transparent,
                               activeBgColor: AppColors.secondary,
@@ -138,13 +142,13 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                   })),
                           GFCheckboxListTile(
                               type: GFCheckboxType.circle,
-                              activeIcon: Icon(
+                              activeIcon: const Icon(
                                 Icons.check,
                                 size: 16,
                                 color: Colors.white,
                               ),
                               size: 20,
-                              inactiveBgColor: Color(0xFFDFDDDD),
+                              inactiveBgColor: const Color(0xFFDFDDDD),
                               activeBorderColor: Colors.transparent,
                               inactiveBorderColor: Colors.transparent,
                               activeBgColor: AppColors.secondary,
@@ -165,7 +169,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                   })),
                           GFCheckboxListTile(
                               type: GFCheckboxType.circle,
-                              activeIcon: Icon(
+                              activeIcon: const Icon(
                                 Icons.check,
                                 size: 16,
                                 color: Colors.white,
@@ -174,7 +178,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                               activeBorderColor: Colors.transparent,
                               inactiveBorderColor: Colors.transparent,
                               activeBgColor: AppColors.secondary,
-                              inactiveBgColor: Color(0xFFDFDDDD),
+                              inactiveBgColor: const Color(0xFFDFDDDD),
                               title: Text("Rents",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
@@ -192,12 +196,12 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                   })),
                           GFCheckboxListTile(
                               type: GFCheckboxType.circle,
-                              activeIcon: Icon(
+                              activeIcon: const Icon(
                                 Icons.check,
                                 size: 16,
                                 color: Colors.white,
                               ),
-                              inactiveBgColor: Color(0xFFDFDDDD),
+                              inactiveBgColor: const Color(0xFFDFDDDD),
                               size: 20,
                               activeBorderColor: Colors.transparent,
                               inactiveBorderColor: Colors.transparent,
@@ -217,13 +221,14 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                     value3 = false;
                                     value2 = false;
                                   })),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           ElevatedButton(
                               style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all(
                                     AppColors.secondary),
                               ),
                               onPressed: () {
+                                // ignore: unrelated_type_equality_checks
                                 (expenseController == 0 || typeData == "")
                                     ? showDialog(
                                         context: context,
@@ -257,7 +262,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    ExpensesPage())),
+                                                    const ExpensesPage())),
                                       };
                               },
                               child: const Center(
