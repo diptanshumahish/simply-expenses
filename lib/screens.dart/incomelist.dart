@@ -23,7 +23,7 @@ class _IncomeListState extends State<IncomeList> {
           var data = snapshot.data;
           var datalength = data!.length;
           return datalength == 0
-              ? Text("No expenses data recoreded yet",
+              ? Text("No earnings data recoreded yet",
                   style: TextStyle(
                       fontSize: 15,
                       color: topColor == Brightness.dark

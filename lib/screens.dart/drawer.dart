@@ -66,12 +66,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                     fontWeight: FontWeight.bold,
                                     color: AppColors.lighttext),
                               ),
-                              Icon(
-                                CupertinoIcons.chevron_forward,
-                                color: topColor == Brightness.light
-                                    ? AppColors.lighttext
-                                    : AppColors.darkBack,
-                              )
+                              const Spacer(),
                             ],
                           ),
                         ),
