@@ -8,6 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
+var newExpense;
+
 class AddExpenseData extends StatefulWidget {
   const AddExpenseData({Key? key}) : super(key: key);
 
@@ -222,15 +224,41 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                     AppColors.secondary),
                               ),
                               onPressed: () {
-                                var expense = Expenses(
-                                    amt: int.parse(expenseController.text),
-                                    type: typeData,
-                                    creationDate: DateTime.now());
-                                addData(expense);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ExpensesPage()));
+                                (expenseController == 0 || typeData == "")
+                                    ? showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            CupertinoAlertDialog(
+                                              insetAnimationDuration:
+                                                  const Duration(seconds: 1),
+                                              title:
+                                                  const Text("Incorrect Input"),
+                                              content: const Text(
+                                                  "Data can't be null"),
+                                              actions: <Widget>[
+                                                CupertinoDialogAction(
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                    child: const Text("retry",
+                                                        style: TextStyle(
+                                                            color: AppColors
+                                                                .themeColor)))
+                                              ],
+                                            ))
+                                    : {
+                                        newExpense = Expenses(
+                                            amt: int.parse(
+                                                expenseController.text),
+                                            type: typeData,
+                                            creationDate: DateTime.now()),
+                                        addData(newExpense),
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ExpensesPage())),
+                                      };
                               },
                               child: const Center(
                                 child: Padding(

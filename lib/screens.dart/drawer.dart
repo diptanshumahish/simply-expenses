@@ -1,3 +1,6 @@
+import 'package:expense_tracker/screens.dart/expensescreen.dart';
+import 'package:expense_tracker/screens.dart/incomescreen.dart';
+import 'package:expense_tracker/screens.dart/intro/loginpage.dart';
 import 'package:expense_tracker/shared/sharedpreferenecs.dart';
 import 'package:expense_tracker/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,8 +31,12 @@ class _AppDrawerState extends State<AppDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var topColor = Theme.of(context).brightness;
     return Drawer(
-      backgroundColor: AppColors.lighttext,
+      backgroundColor: topColor == Brightness.dark
+          ? AppColors.darkBack
+          : AppColors.lighttext,
       child: Column(
         children: [
           Container(
@@ -40,17 +47,28 @@ class _AppDrawerState extends State<AppDrawer> {
                 children: [
                   Positioned(
                       left: 0,
+                      right: 0,
                       bottom: 10,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          username,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.lighttext),
+                        child: InkWell(
+                          onTap: (() {}),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                username,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.lighttext),
+                              ),
+                              Icon(CupertinoIcons.chevron_forward)
+                            ],
+                          ),
                         ),
                       )),
                   Positioned(
@@ -85,13 +103,131 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                       )),
                   Positioned(
-                      bottom: MediaQuery.of(context).size.height / 12,
+                      bottom: MediaQuery.of(context).size.height / 14,
                       child: Container(
-                          height: 1,
+                          height: 0.7,
                           width: MediaQuery.of(context).size.width,
                           color: AppColors.lighttext))
                 ],
               )),
+          SizedBox(height: height / 35),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () => Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: ((context) => ExpensesPage()))),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: topColor != Brightness.dark
+                        ? AppColors.darkBack.withAlpha(20)
+                        : AppColors.lighttext.withAlpha(30)),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Expenses",
+                        style: TextStyle(
+                            fontSize: 26,
+                            color: topColor == Brightness.dark
+                                ? AppColors.lighttext
+                                : AppColors.darkBack),
+                      ),
+                      Icon(Icons.attach_money,
+                          color: topColor == Brightness.dark
+                              ? AppColors.lighttext
+                              : AppColors.darkBack)
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () => Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: ((context) => IncomeScreen()))),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: topColor != Brightness.dark
+                        ? AppColors.darkBack.withAlpha(20)
+                        : AppColors.lighttext.withAlpha(30)),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Earnings ",
+                        style: TextStyle(
+                            fontSize: 26,
+                            color: topColor == Brightness.dark
+                                ? AppColors.lighttext
+                                : AppColors.darkBack),
+                      ),
+                      Icon(Icons.money_rounded,
+                          color: topColor == Brightness.dark
+                              ? AppColors.lighttext
+                              : AppColors.darkBack)
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: (() {
+                Navigator.pushReplacement(
+                    context,
+                    (MaterialPageRoute(
+                      builder: (context) => LoginPage(),
+                    )));
+              }),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: topColor != Brightness.dark
+                        ? AppColors.darkBack.withAlpha(20)
+                        : AppColors.lighttext.withAlpha(30)),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Change Preferences ",
+                        style: TextStyle(
+                            fontSize: 26,
+                            color: topColor == Brightness.dark
+                                ? AppColors.lighttext
+                                : AppColors.darkBack),
+                      ),
+                      Icon(CupertinoIcons.profile_circled,
+                          color: topColor == Brightness.dark
+                              ? AppColors.lighttext
+                              : AppColors.darkBack)
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: Text("Version 1.0.0",
+                style: TextStyle(
+                    fontSize: 14,
+                    color: topColor == Brightness.dark
+                        ? AppColors.lighttext
+                        : AppColors.darkBack)),
+          )
         ],
       ),
     );

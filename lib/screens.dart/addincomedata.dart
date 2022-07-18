@@ -5,6 +5,8 @@ import 'package:expense_tracker/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+var newIncome;
+
 class AddIncomeData extends StatefulWidget {
   const AddIncomeData({Key? key}) : super(key: key);
 
@@ -34,9 +36,9 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                   decoration: BoxDecoration(
                       color: topColor == Brightness.dark
                           ? AppColors.darkBack
-                          : Color(0xFFDAD5D5),
+                          : Color.fromARGB(255, 255, 255, 255),
                       borderRadius: BorderRadius.circular(8)),
-                  height: MediaQuery.of(context).size.height * 0.40,
+                  height: MediaQuery.of(context).size.height * 0.35,
                   width: MediaQuery.of(context).size.width * 0.85,
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),
@@ -85,7 +87,7 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                           controller: incomeController,
                           keyboardType: TextInputType.number,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Color(0xFFDDDADA),
                               borderRadius: BorderRadius.circular(6)),
                           cursorColor: AppColors.themeColor,
                           autofocus: true,
@@ -104,7 +106,7 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                           textCapitalization: TextCapitalization.words,
                           controller: incomeSourceController,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Color(0xFFDDDADA),
                               borderRadius: BorderRadius.circular(6)),
                           cursorColor: AppColors.themeColor,
                           autofocus: true,
@@ -117,15 +119,43 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                                   AppColors.secondary),
                             ),
                             onPressed: () {
-                              var income = Income(
-                                  inc: int.parse(incomeController.text),
-                                  source: incomeSourceController.text,
-                                  creationDate: DateTime.now());
-                              addIncome(income);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => IncomeScreen()));
+                              print(incomeController.text);
+                              print(incomeSourceController.text);
+                              (incomeController.text == "" ||
+                                      incomeSourceController.text == "")
+                                  ? showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          CupertinoAlertDialog(
+                                            insetAnimationDuration:
+                                                const Duration(seconds: 1),
+                                            title:
+                                                const Text("Incorrect Input"),
+                                            content: const Text(
+                                                "Data can't be null"),
+                                            actions: <Widget>[
+                                              CupertinoDialogAction(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: const Text("retry",
+                                                      style: TextStyle(
+                                                          color: AppColors
+                                                              .themeColor)))
+                                            ],
+                                          ))
+                                  : {
+                                      newIncome = Income(
+                                          inc: int.parse(incomeController.text),
+                                          source: incomeSourceController.text,
+                                          creationDate: DateTime.now()),
+                                      addIncome(newIncome),
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  IncomeScreen())),
+                                    };
                             },
                             child: const Center(
                               child: Padding(
