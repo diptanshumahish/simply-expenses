@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Apptheme.light(),
       darkTheme: Apptheme.dark(),
-      home: SplashScreen(),
+      home: LoginPage(),
     );
   }
 }

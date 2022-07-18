@@ -43,7 +43,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                     decoration: BoxDecoration(
                         color: topColor == Brightness.dark
                             ? AppColors.darkBack
-                            : Color.fromARGB(255, 218, 213, 213),
+                            : Color(0xFFDAD5D5),
                         borderRadius: BorderRadius.circular(8)),
                     height: MediaQuery.of(context).size.height * 0.60,
                     width: MediaQuery.of(context).size.width * 0.85,
@@ -58,11 +58,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                 children: [
                                   IconButton(
                                       onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ExpensesPage()));
+                                        Navigator.pop(context);
                                       },
                                       icon: Icon(CupertinoIcons.back)),
                                   Text(
@@ -137,7 +133,6 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                     value2 = false;
                                     value3 = false;
                                     value4 = false;
-                                    print(typeData);
                                   })),
                           GFCheckboxListTile(
                               type: GFCheckboxType.circle,
@@ -164,7 +159,6 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                     value1 = false;
                                     value3 = false;
                                     value4 = false;
-                                    print(typeData);
                                   })),
                           GFCheckboxListTile(
                               type: GFCheckboxType.circle,

@@ -34,7 +34,7 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                   decoration: BoxDecoration(
                       color: topColor == Brightness.dark
                           ? AppColors.darkBack
-                          : AppColors.lighttext,
+                          : Color(0xFFDAD5D5),
                       borderRadius: BorderRadius.circular(8)),
                   height: MediaQuery.of(context).size.height * 0.50,
                   width: MediaQuery.of(context).size.width * 0.85,
@@ -68,7 +68,9 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                         Container(
                           height: 1,
                           width: MediaQuery.of(context).size.width,
-                          color: AppColors.lighttext,
+                          color: topColor == Brightness.dark
+                              ? AppColors.lighttext
+                              : AppColors.darkBack,
                         ),
                         SizedBox(height: 20),
                         Text("Enter earnings amount",

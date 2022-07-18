@@ -1,5 +1,7 @@
 import 'package:expense_tracker/database/database.dart';
 import 'package:expense_tracker/database/incomedatabase.dart';
+import 'package:expense_tracker/screens.dart/addexpensedata.dart';
+import 'package:expense_tracker/screens.dart/addincomedata.dart';
 import 'package:expense_tracker/screens.dart/drawer.dart';
 import 'package:expense_tracker/screens.dart/expensescreen.dart';
 import 'package:expense_tracker/screens.dart/incomescreen.dart';
@@ -120,15 +122,18 @@ class _HomePageState extends State<HomePage> {
     final topColor = Theme.of(context).brightness;
     return Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-              onPressed: () {},
-              icon: Icon(
-                CupertinoIcons.line_horizontal_3,
-                color: topColor == Brightness.dark
-                    ? Colors.white
-                    : AppColors.darkBack,
-                size: 27,
-              )),
+          leading: Builder(
+              builder: (context) => IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: const Icon(
+                    CupertinoIcons.bars,
+                    size: 27,
+                  ),
+                  color: topColor == Brightness.dark
+                      ? AppColors.lighttext
+                      : AppColors.darkBack)),
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -149,6 +154,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+        drawer: AppDrawer(),
         body: ListView(
           physics: BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
@@ -232,9 +238,16 @@ class _HomePageState extends State<HomePage> {
                                   fontWeight: FontWeight.w600,
                                   fontSize: 20,
                                   color: AppColors.lighttext)),
-                          Text("None , All good :)",
+                          Text(
+                              totalSvaings >= 0
+                                  ? "None, All good!"
+                                  : "You need to cut your costs!",
                               style: TextStyle(
-                                  fontSize: 18, color: AppColors.sec)),
+                                fontSize: 18,
+                                color: totalSvaings <= 0
+                                    ? AppColors.lighttext
+                                    : AppColors.secondary,
+                              )),
                           Spacer(),
                           InkWell(
                             onTap: () {
@@ -243,15 +256,22 @@ class _HomePageState extends State<HomePage> {
                                   MaterialPageRoute(
                                       builder: ((context) => ExpensesPage())));
                             },
-                            child: Row(
-                              children: [
-                                Icon(CupertinoIcons.forward),
-                                Text("Track Expenses",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17,
-                                        color: AppColors.darkBack))
-                              ],
+                            child: Container(
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadiusDirectional.circular(4),
+                                  color: AppColors.darkBack.withOpacity(0.2)),
+                              child: Row(
+                                children: [
+                                  Icon(CupertinoIcons.forward),
+                                  Text("Track Expenses",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 17,
+                                          color: AppColors.lighttext))
+                                ],
+                              ),
                             ),
                           )
                         ],
@@ -532,49 +552,101 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Row(
                       children: [
-                        Container(
-                            height: MediaQuery.of(context).size.width / 4,
-                            width: MediaQuery.of(context).size.width / 2.5,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(9),
-                                color: AppColors.themeColor),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.payment),
-                                  SizedBox(height: 10),
-                                  Text(
-                                    "Add Expenses",
-                                    style: TextStyle(
-                                        fontSize: 17, color: Colors.white),
-                                  )
-                                ],
-                              ),
-                            )),
+                        InkWell(
+                          onTap: () {
+                            showGeneralDialog(
+                              barrierLabel: "Label",
+                              barrierDismissible: false,
+                              barrierColor: const Color.fromARGB(255, 0, 0, 0)
+                                  .withOpacity(0.5),
+                              transitionDuration:
+                                  const Duration(milliseconds: 350),
+                              context: context,
+                              pageBuilder: (context, anim1, anim2) {
+                                return AddExpenseData();
+                              },
+                              transitionBuilder:
+                                  (context, anim1, anim2, child) {
+                                return SlideTransition(
+                                  position: Tween(
+                                          begin: const Offset(0, 1),
+                                          end: const Offset(0, 0))
+                                      .animate(anim1),
+                                  child: child,
+                                );
+                              },
+                            );
+                          },
+                          child: Container(
+                              height: MediaQuery.of(context).size.width / 4,
+                              width: MediaQuery.of(context).size.width / 2.5,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(9),
+                                  color: AppColors.themeColor),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.payment),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      "Add Expenses",
+                                      style: TextStyle(
+                                          fontSize: 17, color: Colors.white),
+                                    )
+                                  ],
+                                ),
+                              )),
+                        ),
                         Spacer(),
-                        Container(
-                            height: MediaQuery.of(context).size.width / 4,
-                            width: MediaQuery.of(context).size.width / 2.5,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(9),
-                                color: AppColors.positive),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.upcoming),
-                                  SizedBox(height: 10),
-                                  Text(
-                                    "Add Earnings",
-                                    style: TextStyle(
-                                        fontSize: 17, color: Colors.white),
-                                  )
-                                ],
-                              ),
-                            )),
+                        InkWell(
+                          onTap: () {
+                            showGeneralDialog(
+                              barrierLabel: "Label",
+                              barrierDismissible: false,
+                              barrierColor: const Color.fromARGB(255, 0, 0, 0)
+                                  .withOpacity(0.5),
+                              transitionDuration:
+                                  const Duration(milliseconds: 350),
+                              context: context,
+                              pageBuilder: (context, anim1, anim2) {
+                                return AddIncomeData();
+                              },
+                              transitionBuilder:
+                                  (context, anim1, anim2, child) {
+                                return SlideTransition(
+                                  position: Tween(
+                                          begin: const Offset(0, 1),
+                                          end: const Offset(0, 0))
+                                      .animate(anim1),
+                                  child: child,
+                                );
+                              },
+                            );
+                          },
+                          child: Container(
+                              height: MediaQuery.of(context).size.width / 4,
+                              width: MediaQuery.of(context).size.width / 2.5,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(9),
+                                  color: AppColors.positive),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.upcoming),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      "Add Earnings",
+                                      style: TextStyle(
+                                          fontSize: 17, color: Colors.white),
+                                    )
+                                  ],
+                                ),
+                              )),
+                        ),
                       ],
                     )
                   ]),
