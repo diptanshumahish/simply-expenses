@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 
 class Income {
   int? id;
-  int? inc;
+  double? inc;
   String source;
   DateTime creationDate;
 
@@ -39,7 +39,7 @@ class IncomeConnect {
     await db.execute('''
   CREATE TABLE income(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    income INTEGER,
+    income REAL,
     source TEXT,
     creationDate TEXT
   )

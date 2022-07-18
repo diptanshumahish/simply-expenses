@@ -109,9 +109,7 @@ class _AddExpensesState extends State<AddExpenses> {
                   ],
                 ),
                 const Spacer(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Row(
                   children: [
                     Text(
                       currency,
@@ -121,6 +119,7 @@ class _AddExpensesState extends State<AddExpenses> {
                               : AppColors.darkBack,
                           fontSize: 14),
                     ),
+                    SizedBox(width: 1),
                     Text(
                       widget.amt.toString(),
                       style: TextStyle(

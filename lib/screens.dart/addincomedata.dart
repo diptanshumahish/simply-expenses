@@ -129,8 +129,6 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                                       context: context,
                                       builder: (BuildContext context) =>
                                           CupertinoAlertDialog(
-                                            insetAnimationDuration:
-                                                const Duration(seconds: 1),
                                             title:
                                                 const Text("Incorrect Input"),
                                             content: const Text(
@@ -148,7 +146,8 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                                           ))
                                   : {
                                       newIncome = Income(
-                                          inc: int.parse(incomeController.text),
+                                          inc: double.parse(
+                                              incomeController.text),
                                           source: incomeSourceController.text,
                                           creationDate: DateTime.now()),
                                       addIncome(newIncome),

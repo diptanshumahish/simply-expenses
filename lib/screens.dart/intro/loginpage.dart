@@ -634,9 +634,6 @@ class _LoginPageState extends State<LoginPage> {
                                                   builder:
                                                       (BuildContext context) =>
                                                           CupertinoAlertDialog(
-                                                            insetAnimationDuration:
-                                                                const Duration(
-                                                                    seconds: 1),
                                                             title: const Text(
                                                                 "No input"),
                                                             content: const Text(

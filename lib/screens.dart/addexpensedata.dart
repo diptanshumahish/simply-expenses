@@ -67,11 +67,12 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                         Navigator.pop(context);
                                       },
                                       icon: const Icon(CupertinoIcons.back)),
-                                  const Text(
+                                  Text(
                                     "Add Expense data",
                                     style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.secondary,
+                                        color: topColor == Brightness.dark
+                                            ? AppColors.lighttext
+                                            : AppColors.darkBack,
                                         fontSize: 20),
                                   ),
                                 ],
@@ -234,8 +235,6 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                         context: context,
                                         builder: (BuildContext context) =>
                                             CupertinoAlertDialog(
-                                              insetAnimationDuration:
-                                                  const Duration(seconds: 1),
                                               title:
                                                   const Text("Incorrect Input"),
                                               content: const Text(
@@ -253,7 +252,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                             ))
                                     : {
                                         newExpense = Expenses(
-                                            amt: int.parse(
+                                            amt: double.parse(
                                                 expenseController.text),
                                             type: typeData,
                                             creationDate: DateTime.now()),

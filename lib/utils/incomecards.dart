@@ -11,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AddIncome extends StatefulWidget {
   final int id;
   final String source;
-  final int income;
+  final double income;
   final DateTime creationDate;
 
   const AddIncome(
@@ -40,7 +40,7 @@ class _AddIncomeState extends State<AddIncome> {
     var toDeleteIncome = Income(
         id: widget.id,
         creationDate: widget.creationDate,
-        inc: widget.income,
+        inc: widget.income.toDouble(),
         source: widget.source);
     var inDb = IncomeConnect();
     void deleteIncome(Income income) async {
