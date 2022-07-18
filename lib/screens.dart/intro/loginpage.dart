@@ -4,6 +4,7 @@ import 'package:expense_tracker/utils/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/components/checkbox_list_tile/gf_checkbox_list_tile.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:getwidget/types/gf_checkbox_type.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -96,105 +97,120 @@ class _LoginPageState extends State<LoginPage> {
                 width: 300,
               ),
             ),
-            width < 600
-                ? Center(
-                    child: Container(
-                      height: MediaQuery.of(context).size.height / 1.5,
-                      width: MediaQuery.of(context).size.width * 0.80,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: topColor == Brightness.dark
-                                ? Colors.white.withOpacity(0.09)
-                                : AppColors.darkBack.withOpacity(0.3),
-                            offset: const Offset(
-                              0.0,
-                              1.0,
-                            ),
-                            blurRadius: 30.0,
-                            spreadRadius: 1.0,
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(10),
+            if (width < 600)
+              Center(
+                child: Container(
+                  height: MediaQuery.of(context).size.height / 2.2,
+                  width: MediaQuery.of(context).size.width * 0.80,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
                         color: topColor == Brightness.dark
-                            ? Color(0xFF232324)
-                            : Colors.white,
+                            ? Colors.white.withOpacity(0.09)
+                            : AppColors.darkBack.withOpacity(0.3),
+                        offset: const Offset(
+                          0.0,
+                          1.0,
+                        ),
+                        blurRadius: 30.0,
+                        spreadRadius: 1.0,
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Let's know each other !",
-                              style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width / 20,
-                                color: topColor == Brightness.dark
-                                    ? Colors.white
-                                    : AppColors.darkBack,
-                              ),
+                    ],
+                    borderRadius: BorderRadius.circular(10),
+                    color: topColor == Brightness.dark
+                        ? Color(0xFF232324)
+                        : Colors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Let's know each other !",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: MediaQuery.of(context).size.width / 17,
+                              color: AppColors.secondary),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 26,
+                        ),
+                        Container(
+                            height: 0.4,
+                            width: MediaQuery.of(context).size.width - 10,
+                            color: topColor == Brightness.dark
+                                ? AppColors.lighttext
+                                : AppColors.darkBack),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 26,
+                        ),
+                        Text(
+                          "Your name:",
+                          style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width / 20,
+                            fontWeight: FontWeight.w500,
+                            color: topColor == Brightness.dark
+                                ? Colors.white
+                                : AppColors.darkBack,
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 200,
+                        ),
+                        TextField(
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: topColor == Brightness.dark
+                                ? AppColors.lighttext
+                                : AppColors.darkBack,
+                          ),
+                          decoration: const InputDecoration(
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: AppColors.secondary),
                             ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 26,
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: AppColors.secondary),
                             ),
-                            Container(
-                                height: 0.4,
-                                width: MediaQuery.of(context).size.width - 10,
-                                color: topColor == Brightness.dark
-                                    ? AppColors.lighttext
-                                    : AppColors.darkBack),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 26,
-                            ),
-                            Text(
-                              "Your name:",
-                              style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width / 22,
-                                color: topColor == Brightness.dark
-                                    ? Colors.white
-                                    : AppColors.darkBack,
-                              ),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 200,
-                            ),
-                            TextField(
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: topColor == Brightness.dark
-                                    ? AppColors.lighttext
-                                    : AppColors.darkBack,
-                              ),
-                              decoration: const InputDecoration(
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: AppColors.secondary),
+                            focusColor: AppColors.secondary,
+                            hintText: "Enter your name here",
+                          ),
+                          autofocus: true,
+                          textCapitalization: TextCapitalization.words,
+                          controller: nameController,
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width / 25,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Enter your preferred currency unit :",
+                                style: TextStyle(
+                                  fontSize:
+                                      MediaQuery.of(context).size.width / 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: topColor == Brightness.dark
+                                      ? Colors.white
+                                      : AppColors.darkBack,
                                 ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: AppColors.secondary),
-                                ),
-                                focusColor: AppColors.secondary,
-                                hintText: "Enter your name here",
                               ),
-                              autofocus: true,
-                              textCapitalization: TextCapitalization.words,
-                              controller: nameController,
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 100,
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "Enter your preferred currency unit :",
+                              SizedBox(height: 20),
+                              GFCheckboxListTile(
+                                  activeBgColor: AppColors.positive,
+                                  type: GFCheckboxType.circle,
+                                  activeBorderColor: Colors.transparent,
+                                  inactiveBorderColor: Colors.transparent,
+                                  inactiveBgColor: AppColors.lighttext,
+                                  padding: EdgeInsets.zero,
+                                  size: 16,
+                                  value: rupee,
+                                  title: Text("Rupee \u{20B9}",
                                       style: TextStyle(
                                         fontSize:
                                             MediaQuery.of(context).size.width /
@@ -202,171 +218,430 @@ class _LoginPageState extends State<LoginPage> {
                                         color: topColor == Brightness.dark
                                             ? Colors.white
                                             : AppColors.darkBack,
-                                      ),
+                                      )),
+                                  activeIcon: Icon(Icons.check,
+                                      size: 16, color: AppColors.lighttext),
+                                  onChanged: (value) => setState(() {
+                                        rupee = value;
+                                        yen = false;
+                                        euro = false;
+                                        dollar = false;
+                                        currency = "\u{20B9}";
+                                      })),
+                              GFCheckboxListTile(
+                                  activeBgColor: AppColors.positive,
+                                  activeBorderColor: Colors.transparent,
+                                  activeIcon: Icon(Icons.check,
+                                      size: 16, color: AppColors.lighttext),
+                                  inactiveBorderColor: Colors.transparent,
+                                  inactiveBgColor: AppColors.lighttext,
+                                  type: GFCheckboxType.circle,
+                                  padding: EdgeInsets.zero,
+                                  size: 16,
+                                  value: dollar,
+                                  title: Text("Dollar \u{0024}",
+                                      style: TextStyle(
+                                        fontSize:
+                                            MediaQuery.of(context).size.width /
+                                                24,
+                                        color: topColor == Brightness.dark
+                                            ? Colors.white
+                                            : AppColors.darkBack,
+                                      )),
+                                  onChanged: (value) => setState(() {
+                                        dollar = value;
+                                        yen = false;
+                                        euro = false;
+                                        rupee = false;
+                                        currency = "\u{0024}";
+                                      })),
+                              GFCheckboxListTile(
+                                  activeBorderColor: Colors.transparent,
+                                  activeBgColor: AppColors.positive,
+                                  activeIcon: Icon(Icons.check,
+                                      size: 16, color: AppColors.lighttext),
+                                  inactiveBorderColor: Colors.transparent,
+                                  inactiveBgColor: AppColors.lighttext,
+                                  type: GFCheckboxType.circle,
+                                  padding: EdgeInsets.zero,
+                                  size: 16,
+                                  value: yen,
+                                  title: Text("Yen \u{00A5}",
+                                      style: TextStyle(
+                                        fontSize:
+                                            MediaQuery.of(context).size.width /
+                                                24,
+                                        color: topColor == Brightness.dark
+                                            ? Colors.white
+                                            : AppColors.darkBack,
+                                      )),
+                                  onChanged: (value) => setState(() {
+                                        yen = value;
+                                        dollar = false;
+                                        euro = false;
+                                        rupee = false;
+                                        currency = "\u{00A5}";
+                                      })),
+                              GFCheckboxListTile(
+                                  activeBgColor: AppColors.positive,
+                                  activeBorderColor: Colors.transparent,
+                                  activeIcon: Icon(Icons.check,
+                                      size: 16, color: AppColors.lighttext),
+                                  inactiveBorderColor: Colors.transparent,
+                                  inactiveBgColor: AppColors.lighttext,
+                                  type: GFCheckboxType.circle,
+                                  padding: EdgeInsets.zero,
+                                  size: 16,
+                                  value: euro,
+                                  title: Text("Euro \u{20AC}",
+                                      style: TextStyle(
+                                        fontSize:
+                                            MediaQuery.of(context).size.width /
+                                                24,
+                                        color: topColor == Brightness.dark
+                                            ? Colors.white
+                                            : AppColors.darkBack,
+                                      )),
+                                  onChanged: (value) => setState(() {
+                                        euro = value;
+                                        dollar = false;
+                                        yen = false;
+                                        rupee = false;
+                                        currency = "\u{20AC}";
+                                      })),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.width / 60,
+                              ),
+                              ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        AppColors.secondary),
+                                  ),
+                                  onPressed: () {
+                                    name = nameController.text;
+                                    setState(() {
+                                      saveData(name);
+                                      saveDataCurrency(currency);
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: ((context) =>
+                                                  HomePage())));
+                                    });
+                                  },
+                                  child: Center(
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 50, vertical: 5),
+                                      child: Text("Let's Go!",
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                22,
+                                          )),
                                     ),
+                                  ))
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            else
+              Center(
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: topColor == Brightness.dark
+                              ? Colors.white.withOpacity(0.03)
+                              : AppColors.darkBack.withOpacity(0.3),
+                          offset: const Offset(
+                            0.0,
+                            1.0,
+                          ),
+                          blurRadius: 30.0,
+                          spreadRadius: 1.0,
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(10),
+                      color: topColor == Brightness.dark
+                          ? AppColors.lighttext.withOpacity(0.1)
+                          : AppColors.darkBack.withOpacity(0.7)),
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  height: MediaQuery.of(context).size.height / 2.5,
+                  child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Stack(
+                        children: [
+                          Positioned(
+                              left: 0,
+                              right: 0,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Hey there ! Welcome",
+                                  style: TextStyle(
+                                      color: AppColors.lighttext,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.center,
+                                ),
+                              )),
+                          Center(
+                            child: Positioned(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("Simply",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 40,
+                                              color: Colors.white)),
+                                      Text("Expenses.",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 40,
+                                              color: Colors.black))
+                                    ],
                                   ),
+                                  SizedBox(width: 20),
+                                  Container(
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              4.5,
+                                      width: 1,
+                                      color: AppColors.lighttext),
                                   SizedBox(
-                                    height:
-                                        MediaQuery.of(context).size.width / 50,
+                                    width: 20,
                                   ),
-                                  GFCheckboxListTile(
-                                      activeBgColor: AppColors.positive,
-                                      type: GFCheckboxType.circle,
-                                      activeBorderColor: Colors.transparent,
-                                      inactiveBorderColor: Colors.transparent,
-                                      inactiveBgColor: AppColors.lighttext,
-                                      padding: EdgeInsets.zero,
-                                      size: 16,
-                                      value: rupee,
-                                      title: Text("Rupee \u{20B9}",
+                                  Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("Your Name",
                                           style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                30,
-                                            color: topColor == Brightness.dark
-                                                ? Colors.white
-                                                : AppColors.darkBack,
-                                          )),
-                                      activeIcon: Icon(Icons.check,
-                                          size: 16, color: AppColors.lighttext),
-                                      onChanged: (value) => setState(() {
-                                            print(width);
-                                            rupee = value;
-                                            yen = false;
-                                            euro = false;
-                                            dollar = false;
-                                            currency = "\u{20B9}";
-                                          })),
-                                  GFCheckboxListTile(
-                                      activeBgColor: AppColors.positive,
-                                      activeBorderColor: Colors.transparent,
-                                      activeIcon: Icon(Icons.check,
-                                          size: 16, color: AppColors.lighttext),
-                                      inactiveBorderColor: Colors.transparent,
-                                      inactiveBgColor: AppColors.lighttext,
-                                      type: GFCheckboxType.circle,
-                                      padding: EdgeInsets.zero,
-                                      size: 16,
-                                      value: dollar,
-                                      title: Text("Dollar \u{0024}",
-                                          style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                30,
-                                            color: topColor == Brightness.dark
-                                                ? Colors.white
-                                                : AppColors.darkBack,
-                                          )),
-                                      onChanged: (value) => setState(() {
-                                            dollar = value;
-                                            yen = false;
-                                            euro = false;
-                                            rupee = false;
-                                            currency = "\u{0024}";
-                                          })),
-                                  GFCheckboxListTile(
-                                      activeBorderColor: Colors.transparent,
-                                      activeBgColor: AppColors.positive,
-                                      activeIcon: Icon(Icons.check,
-                                          size: 16, color: AppColors.lighttext),
-                                      inactiveBorderColor: Colors.transparent,
-                                      inactiveBgColor: AppColors.lighttext,
-                                      type: GFCheckboxType.circle,
-                                      padding: EdgeInsets.zero,
-                                      size: 16,
-                                      value: yen,
-                                      title: Text("Yen \u{00A5}",
-                                          style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                30,
-                                            color: topColor == Brightness.dark
-                                                ? Colors.white
-                                                : AppColors.darkBack,
-                                          )),
-                                      onChanged: (value) => setState(() {
-                                            yen = value;
-                                            dollar = false;
-                                            euro = false;
-                                            rupee = false;
-                                            currency = "\u{00A5}";
-                                          })),
-                                  GFCheckboxListTile(
-                                      activeBgColor: AppColors.positive,
-                                      activeBorderColor: Colors.transparent,
-                                      activeIcon: Icon(Icons.check,
-                                          size: 16, color: AppColors.lighttext),
-                                      inactiveBorderColor: Colors.transparent,
-                                      inactiveBgColor: AppColors.lighttext,
-                                      type: GFCheckboxType.circle,
-                                      padding: EdgeInsets.zero,
-                                      size: 16,
-                                      value: euro,
-                                      title: Text("Euro \u{20AC}",
-                                          style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                30,
-                                            color: topColor == Brightness.dark
-                                                ? Colors.white
-                                                : AppColors.darkBack,
-                                          )),
-                                      onChanged: (value) => setState(() {
-                                            euro = value;
-                                            dollar = false;
-                                            yen = false;
-                                            rupee = false;
-                                            currency = "\u{20AC}";
-                                          })),
-                                  SizedBox(
-                                    height:
-                                        MediaQuery.of(context).size.width / 60,
-                                  ),
-                                  ElevatedButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                AppColors.secondary),
-                                      ),
-                                      onPressed: () {
-                                        name = nameController.text;
-                                        setState(() {
-                                          saveData(name);
-                                          saveDataCurrency(currency);
-                                          Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: ((context) =>
-                                                      HomePage())));
-                                        });
-                                      },
-                                      child: Center(
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 50, vertical: 5),
-                                          child: Text("Let's Go!",
-                                              maxLines: 1,
-                                              style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    80,
-                                              )),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 30,
+                                              color: AppColors.secondary)),
+                                      SizedBox(height: 10),
+                                      SizedBox(
+                                        width: 300,
+                                        height: 30,
+                                        child: CupertinoTextField(
+                                          controller: nameController,
+                                          cursorColor: AppColors.themeColor,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: AppColors.lighttext),
                                         ),
-                                      ))
+                                      ),
+                                      SizedBox(height: 30),
+                                      Text(
+                                          "Choose your preffered currency unit",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 25,
+                                              color: AppColors.secondary)),
+                                      SizedBox(height: 10),
+                                      SizedBox(
+                                        width: 200,
+                                        height: 50,
+                                        child: GFCheckboxListTile(
+                                            margin: EdgeInsets.all(2),
+                                            subTitle: Text("INR",
+                                                style: TextStyle(
+                                                    color:
+                                                        AppColors.lighttext)),
+                                            activeBgColor: AppColors.positive,
+                                            type: GFCheckboxType.circle,
+                                            activeBorderColor:
+                                                Colors.transparent,
+                                            inactiveBorderColor:
+                                                Colors.transparent,
+                                            inactiveBgColor:
+                                                AppColors.lighttext,
+                                            padding: EdgeInsets.zero,
+                                            size: 15,
+                                            value: rupee,
+                                            title: Text("Rupee \u{20B9}",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white)),
+                                            activeIcon: Icon(Icons.check,
+                                                size: 15,
+                                                color: AppColors.lighttext),
+                                            onChanged: (value) => setState(() {
+                                                  print(width);
+                                                  rupee = value;
+                                                  yen = false;
+                                                  euro = false;
+                                                  dollar = false;
+                                                  currency = "\u{20B9}";
+                                                })),
+                                      ),
+                                      SizedBox(
+                                        width: 200,
+                                        height: 50,
+                                        child: GFCheckboxListTile(
+                                            margin: EdgeInsets.all(2),
+                                            subTitle: Text("USD",
+                                                style: TextStyle(
+                                                    color:
+                                                        AppColors.lighttext)),
+                                            activeBgColor: AppColors.positive,
+                                            type: GFCheckboxType.circle,
+                                            activeBorderColor:
+                                                Colors.transparent,
+                                            inactiveBorderColor:
+                                                Colors.transparent,
+                                            inactiveBgColor:
+                                                AppColors.lighttext,
+                                            padding: EdgeInsets.zero,
+                                            size: 15,
+                                            value: dollar,
+                                            title: Text("Dollar \u{0024}",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white)),
+                                            activeIcon: Icon(Icons.check,
+                                                size: 15,
+                                                color: AppColors.lighttext),
+                                            onChanged: (value) => setState(() {
+                                                  dollar = value;
+                                                  yen = false;
+                                                  euro = false;
+                                                  rupee = false;
+                                                  currency = "\u{0024}";
+                                                })),
+                                      ),
+                                      SizedBox(
+                                        width: 200,
+                                        height: 50,
+                                        child: GFCheckboxListTile(
+                                            margin: EdgeInsets.all(2),
+                                            subTitle: Text("YEN",
+                                                style: TextStyle(
+                                                    color:
+                                                        AppColors.lighttext)),
+                                            activeBgColor: AppColors.positive,
+                                            type: GFCheckboxType.circle,
+                                            activeBorderColor:
+                                                Colors.transparent,
+                                            inactiveBorderColor:
+                                                Colors.transparent,
+                                            inactiveBgColor:
+                                                AppColors.lighttext,
+                                            padding: EdgeInsets.zero,
+                                            size: 15,
+                                            value: yen,
+                                            title: Text("Yen \u{00A5}",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white)),
+                                            activeIcon: Icon(Icons.check,
+                                                size: 15,
+                                                color: AppColors.lighttext),
+                                            onChanged: (value) => setState(() {
+                                                  yen = value;
+                                                  dollar = false;
+                                                  euro = false;
+                                                  rupee = false;
+                                                  currency = "\u{00A5}";
+                                                })),
+                                      ),
+                                      SizedBox(
+                                        width: 200,
+                                        height: 50,
+                                        child: GFCheckboxListTile(
+                                            margin: EdgeInsets.all(2),
+                                            subTitle: Text("EUR",
+                                                style: TextStyle(
+                                                    color:
+                                                        AppColors.lighttext)),
+                                            activeBgColor: AppColors.positive,
+                                            type: GFCheckboxType.circle,
+                                            activeBorderColor:
+                                                Colors.transparent,
+                                            inactiveBorderColor:
+                                                Colors.transparent,
+                                            inactiveBgColor:
+                                                AppColors.lighttext,
+                                            padding: EdgeInsets.zero,
+                                            size: 15,
+                                            value: euro,
+                                            title: Text("Euro \u{20AC}",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: Colors.white)),
+                                            activeIcon: Icon(Icons.check,
+                                                size: 15,
+                                                color: AppColors.lighttext),
+                                            onChanged: (value) => setState(() {
+                                                  euro = value;
+                                                  dollar = false;
+                                                  yen = false;
+                                                  rupee = false;
+                                                  currency = "\u{20AC}";
+                                                })),
+                                      ),
+                                      ElevatedButton(
+                                          style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    AppColors.secondary),
+                                          ),
+                                          onPressed: () {
+                                            name = nameController.text;
+                                            setState(() {
+                                              saveData(name);
+                                              saveDataCurrency(currency);
+                                              Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: ((context) =>
+                                                          HomePage())));
+                                            });
+                                          },
+                                          child: Center(
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 50, vertical: 5),
+                                              child: Text("Let's Go!",
+                                                  maxLines: 1,
+                                                  style:
+                                                      TextStyle(fontSize: 20)),
+                                            ),
+                                          ))
+                                    ],
+                                  )
                                 ],
                               ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                : Center(),
+                            ),
+                          )
+                        ],
+                      )),
+                ),
+              ),
           ],
         ),
       ),

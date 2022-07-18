@@ -43,9 +43,9 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                     decoration: BoxDecoration(
                         color: topColor == Brightness.dark
                             ? AppColors.darkBack
-                            : Color(0xFFDAD5D5),
+                            : Color.fromARGB(255, 255, 255, 255),
                         borderRadius: BorderRadius.circular(8)),
-                    height: MediaQuery.of(context).size.height * 0.60,
+                    height: MediaQuery.of(context).size.height * 0.54,
                     width: MediaQuery.of(context).size.width * 0.85,
                     child: Padding(
                       padding: const EdgeInsets.all(18.0),
@@ -64,9 +64,8 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                   Text(
                                     "Add Expense data",
                                     style: TextStyle(
-                                        color: topColor == Brightness.dark
-                                            ? AppColors.lighttext
-                                            : AppColors.darkBack,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.secondary,
                                         fontSize: 20),
                                   ),
                                 ],
@@ -88,26 +87,26 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                   color: topColor == Brightness.dark
                                       ? AppColors.lighttext
                                       : AppColors.darkBack,
-                                  fontSize: 15)),
+                                  fontSize: 18)),
                           SizedBox(height: 10),
                           CupertinoTextField(
                             controller: expenseController,
                             keyboardType: TextInputType.number,
                             decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Color.fromARGB(255, 233, 229, 229),
                                 borderRadius: BorderRadius.circular(6)),
                             cursorColor: AppColors.themeColor,
                             autofocus: true,
                             style: const TextStyle(color: AppColors.darkBack),
                           ),
-                          SizedBox(height: 20),
+                          SizedBox(height: 25),
                           Text("Type of expenditure:",
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   color: topColor == Brightness.dark
                                       ? AppColors.lighttext
                                       : AppColors.darkBack,
-                                  fontSize: 15)),
+                                  fontSize: 18)),
                           GFCheckboxListTile(
                               title: Text("Food",
                                   style: TextStyle(
@@ -115,7 +114,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                       color: topColor == Brightness.dark
                                           ? AppColors.lighttext
                                           : AppColors.darkBack,
-                                      fontSize: 13)),
+                                      fontSize: 16)),
                               type: GFCheckboxType.circle,
                               activeIcon: Icon(
                                 Icons.check,
@@ -123,6 +122,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                 color: Colors.white,
                               ),
                               size: 20,
+                              inactiveBgColor: Color(0xFFDFDDDD),
                               activeBorderColor: Colors.transparent,
                               inactiveBorderColor: Colors.transparent,
                               activeBgColor: AppColors.secondary,
@@ -142,6 +142,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                 color: Colors.white,
                               ),
                               size: 20,
+                              inactiveBgColor: Color(0xFFDFDDDD),
                               activeBorderColor: Colors.transparent,
                               inactiveBorderColor: Colors.transparent,
                               activeBgColor: AppColors.secondary,
@@ -151,7 +152,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                       color: topColor == Brightness.dark
                                           ? AppColors.lighttext
                                           : AppColors.darkBack,
-                                      fontSize: 13)),
+                                      fontSize: 16)),
                               value: value2,
                               onChanged: (value) => setState(() {
                                     value2 = value;
@@ -171,13 +172,14 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                               activeBorderColor: Colors.transparent,
                               inactiveBorderColor: Colors.transparent,
                               activeBgColor: AppColors.secondary,
+                              inactiveBgColor: Color(0xFFDFDDDD),
                               title: Text("Rents",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       color: topColor == Brightness.dark
                                           ? AppColors.lighttext
                                           : AppColors.darkBack,
-                                      fontSize: 13)),
+                                      fontSize: 16)),
                               value: value3,
                               onChanged: (value) => setState(() {
                                     value3 = value;
@@ -193,6 +195,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                 size: 16,
                                 color: Colors.white,
                               ),
+                              inactiveBgColor: Color(0xFFDFDDDD),
                               size: 20,
                               activeBorderColor: Colors.transparent,
                               inactiveBorderColor: Colors.transparent,
@@ -203,7 +206,7 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                       color: topColor == Brightness.dark
                                           ? AppColors.lighttext
                                           : AppColors.darkBack,
-                                      fontSize: 13)),
+                                      fontSize: 16)),
                               value: value4,
                               onChanged: (value) => setState(() {
                                     value4 = value;
@@ -234,7 +237,9 @@ class _AddExpenseDataState extends State<AddExpenseData> {
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 70, vertical: 5),
                                   child: Text("Update",
-                                      style: TextStyle(fontSize: 17)),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 18)),
                                 ),
                               )),
                         ],

@@ -74,8 +74,10 @@ class _AddIncomeState extends State<AddIncome> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(widget.source,

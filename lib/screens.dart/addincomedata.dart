@@ -36,7 +36,7 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                           ? AppColors.darkBack
                           : Color(0xFFDAD5D5),
                       borderRadius: BorderRadius.circular(8)),
-                  height: MediaQuery.of(context).size.height * 0.50,
+                  height: MediaQuery.of(context).size.height * 0.40,
                   width: MediaQuery.of(context).size.width * 0.85,
                   child: Padding(
                     padding: const EdgeInsets.all(18.0),
@@ -110,7 +110,7 @@ class _AddIncomeDataState extends State<AddIncomeData> {
                           autofocus: true,
                           style: const TextStyle(color: AppColors.darkBack),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 20),
                         ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all(

@@ -118,6 +118,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+
     double totalSvaings = totalIncome - total;
     final topColor = Theme.of(context).brightness;
     return Scaffold(
@@ -195,7 +197,7 @@ class _HomePageState extends State<HomePage> {
                     height: 30,
                   ),
                   Container(
-                    height: 200,
+                    height: width < 600 ? 200 : 300,
                     width: MediaQuery.of(context).size.width * 90,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -207,8 +209,10 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Text("Total Expenses",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
+                                  fontWeight: width < 600
+                                      ? FontWeight.w500
+                                      : FontWeight.bold,
+                                  fontSize: width < 600 ? 20 : 40,
                                   color: Colors.white)),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -219,35 +223,35 @@ class _HomePageState extends State<HomePage> {
                                   Text(currency.toString(),
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 20,
+                                          fontSize: width < 600 ? 20 : 30,
                                           color: AppColors.lighttext)),
                                   Text(total.toString(),
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 30,
+                                          fontSize: width < 600 ? 20 : 40,
                                           color: AppColors.lighttext))
                                 ],
                               ),
-                              Icon(CupertinoIcons.checkmark_alt_circle_fill,
-                                  color: Colors.white)
+                              Icon(
+                                CupertinoIcons.checkmark_alt_circle_fill,
+                                color: Colors.white,
+                                size: width < 600 ? 20 : 40,
+                              )
                             ],
                           ),
                           SizedBox(height: 30),
                           Text("Alerts:",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 20,
+                                  fontSize: width < 600 ? 20 : 30,
                                   color: AppColors.lighttext)),
                           Text(
                               totalSvaings >= 0
                                   ? "None, All good!"
                                   : "You need to cut your costs!",
                               style: TextStyle(
-                                fontSize: 18,
-                                color: totalSvaings <= 0
-                                    ? AppColors.lighttext
-                                    : AppColors.secondary,
-                              )),
+                                  fontSize: width < 600 ? 18 : 25,
+                                  color: AppColors.lighttext)),
                           Spacer(),
                           InkWell(
                             onTap: () {
@@ -257,7 +261,7 @@ class _HomePageState extends State<HomePage> {
                                       builder: ((context) => ExpensesPage())));
                             },
                             child: Container(
-                              height: 30,
+                              height: width < 600 ? 30 : 50,
                               decoration: BoxDecoration(
                                   borderRadius:
                                       BorderRadiusDirectional.circular(4),
@@ -268,7 +272,7 @@ class _HomePageState extends State<HomePage> {
                                   Text("Track Expenses",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 17,
+                                          fontSize: width < 600 ? 20 : 25,
                                           color: AppColors.lighttext))
                                 ],
                               ),
@@ -288,7 +292,9 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text("Your expenses in brief",
                       style: TextStyle(
-                          fontSize: 22,
+                          fontSize: width < 600 ? 22 : 30,
+                          fontWeight:
+                              width < 600 ? FontWeight.normal : FontWeight.bold,
                           color: topColor == Brightness.dark
                               ? Colors.white
                               : AppColors.darkBack)),
@@ -300,15 +306,19 @@ class _HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: AppColors.themeColor),
-                        height: 100,
-                        width: 85,
+                        height: width < 600 ? 100 : 200,
+                        width: width < 600 ? 85 : 180,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.restaurant, color: Colors.white),
+                            Icon(Icons.restaurant,
+                                color: Colors.white,
+                                size: width < 600 ? 20 : 30),
                             Text(
                               "Food",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: width < 600 ? 20 : 30),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -317,11 +327,13 @@ class _HomePageState extends State<HomePage> {
                                   currency.toString(),
                                   style: TextStyle(
                                       color: Colors.white,
+                                      fontSize: width < 600 ? 20 : 30,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(totalFood.toString(),
                                     style: TextStyle(
                                         color: Colors.white,
+                                        fontSize: width < 600 ? 20 : 30,
                                         fontWeight: FontWeight.bold))
                               ],
                             )
@@ -332,15 +344,19 @@ class _HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: AppColors.themeColor),
-                        height: 100,
-                        width: 85,
+                        height: width < 600 ? 100 : 200,
+                        width: width < 600 ? 85 : 180,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.nightlife, color: Colors.white),
+                            Icon(Icons.nightlife,
+                                color: Colors.white,
+                                size: width < 600 ? 20 : 30),
                             Text(
                               "Leisure",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: width < 600 ? 20 : 30),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -349,11 +365,13 @@ class _HomePageState extends State<HomePage> {
                                   currency.toString(),
                                   style: TextStyle(
                                       color: Colors.white,
+                                      fontSize: width < 600 ? 20 : 30,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(totalLeisure.toString(),
                                     style: TextStyle(
                                         color: Colors.white,
+                                        fontSize: width < 600 ? 20 : 30,
                                         fontWeight: FontWeight.bold))
                               ],
                             )
@@ -364,15 +382,19 @@ class _HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: AppColors.themeColor),
-                        height: 100,
-                        width: 85,
+                        height: width < 600 ? 100 : 200,
+                        width: width < 600 ? 85 : 180,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.home, color: Colors.white),
+                            Icon(Icons.home,
+                                color: Colors.white,
+                                size: width < 600 ? 20 : 30),
                             Text(
                               "Rents",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: width < 600 ? 20 : 30),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -381,10 +403,12 @@ class _HomePageState extends State<HomePage> {
                                   currency.toString(),
                                   style: TextStyle(
                                       color: Colors.white,
+                                      fontSize: width < 600 ? 20 : 30,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(totalRents.toString(),
                                     style: TextStyle(
+                                        fontSize: width < 600 ? 20 : 30,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold))
                               ],
@@ -396,16 +420,19 @@ class _HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: AppColors.themeColor),
-                        height: 100,
-                        width: 85,
+                        height: width < 600 ? 100 : 200,
+                        width: width < 600 ? 85 : 180,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(Icons.dynamic_form_outlined,
-                                color: Colors.white),
+                                color: Colors.white,
+                                size: width < 600 ? 20 : 30),
                             Text(
                               "Others",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: width < 600 ? 20 : 30),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -414,11 +441,13 @@ class _HomePageState extends State<HomePage> {
                                   currency.toString(),
                                   style: TextStyle(
                                       color: Colors.white,
+                                      fontSize: width < 600 ? 20 : 25,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(totalOthers.toString(),
                                     style: TextStyle(
                                         color: Colors.white,
+                                        fontSize: width < 600 ? 20 : 25,
                                         fontWeight: FontWeight.bold))
                               ],
                             )
@@ -486,7 +515,7 @@ class _HomePageState extends State<HomePage> {
                                   Text("Track Income",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
-                                          fontSize: 15,
+                                          fontSize: width < 600 ? 15 : 20,
                                           color: AppColors.darkBack))
                                 ],
                               ),
@@ -588,12 +617,16 @@ class _HomePageState extends State<HomePage> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.payment),
+                                    Icon(
+                                      Icons.payment,
+                                      size: width < 600 ? 20 : 30,
+                                    ),
                                     SizedBox(height: 10),
                                     Text(
                                       "Add Expenses",
                                       style: TextStyle(
-                                          fontSize: 17, color: Colors.white),
+                                          fontSize: width < 600 ? 17 : 25,
+                                          color: Colors.white),
                                     )
                                   ],
                                 ),
@@ -636,12 +669,16 @@ class _HomePageState extends State<HomePage> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.upcoming),
+                                    Icon(
+                                      Icons.upcoming,
+                                      size: width < 600 ? 20 : 30,
+                                    ),
                                     SizedBox(height: 10),
                                     Text(
                                       "Add Earnings",
                                       style: TextStyle(
-                                          fontSize: 17, color: Colors.white),
+                                          fontSize: width < 600 ? 17 : 25,
+                                          color: Colors.white),
                                     )
                                   ],
                                 ),
