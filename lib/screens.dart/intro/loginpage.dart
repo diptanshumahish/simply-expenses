@@ -212,7 +212,7 @@ class _LoginPageState extends State<LoginPage> {
                                                     title:
                                                         const Text("No input"),
                                                     content: const Text(
-                                                        "You didn't enter any name/currency type"),
+                                                        "You didn't enter any name"),
                                                     actions: <Widget>[
                                                       CupertinoDialogAction(
                                                           onPressed: () {

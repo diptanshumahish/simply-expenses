@@ -1,3 +1,4 @@
+import 'package:expense_tracker/screens.dart/intro/loadingpage.dart';
 import 'package:expense_tracker/screens.dart/intro/splashscreen.dart';
 import 'package:expense_tracker/theme.dart';
 import 'package:flutter/material.dart';

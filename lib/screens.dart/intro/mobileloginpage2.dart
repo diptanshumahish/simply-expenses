@@ -1,3 +1,4 @@
+import 'package:expense_tracker/screens.dart/intro/loadingpage.dart';
 import 'package:expense_tracker/screens.dart/intro/loginpage.dart';
 import 'package:expense_tracker/shared/sharedpreferenecs.dart';
 import 'package:expense_tracker/theme.dart';
@@ -276,7 +277,7 @@ class _LoginPageSecondState extends State<LoginPageSecond> {
                                               CupertinoAlertDialog(
                                                 title: const Text("No input"),
                                                 content: const Text(
-                                                    "You didn't enter any name/currency type"),
+                                                    "You didn't enter any currency type"),
                                                 actions: <Widget>[
                                                   CupertinoDialogAction(
                                                       onPressed: () {
@@ -295,7 +296,7 @@ class _LoginPageSecondState extends State<LoginPageSecond> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: ((context) =>
-                                                        const HomePage())));
+                                                        const LoadingPage())));
                                           })
                                         };
                                 },
