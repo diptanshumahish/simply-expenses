@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 
 import 'package:getwidget/getwidget.dart';
 
-import '../homepage.dart';
-
 class LoginPageSecond extends StatefulWidget {
   const LoginPageSecond({Key? key}) : super(key: key);
 
