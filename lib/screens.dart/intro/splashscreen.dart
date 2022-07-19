@@ -1,5 +1,5 @@
+import 'package:expense_tracker/begin_intro/begin_screen.dart';
 import 'package:expense_tracker/screens.dart/homepage.dart';
-import 'package:expense_tracker/screens.dart/intro/loginpage.dart';
 import 'package:expense_tracker/shared/sharedpreferenecs.dart';
 import 'package:expense_tracker/theme.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
         move = true;
       });
     }));
-    Future.delayed(const Duration(seconds: 4), (() async {
+    Future.delayed(const Duration(milliseconds: 1900), (() async {
       showGeneralDialog(
         barrierLabel: "Label",
         barrierDismissible: false,
@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
         transitionDuration: const Duration(milliseconds: 600),
         context: context,
         pageBuilder: (context, anim1, anim2) {
-          return (username == 0) ? const LoginPage() : const HomePage();
+          return (username == 0) ? const IntroScreens() : const HomePage();
         },
       );
     }));

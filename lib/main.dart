@@ -1,4 +1,3 @@
-import 'package:expense_tracker/begin_intro/begin_screen.dart';
 import 'package:expense_tracker/screens.dart/intro/splashscreen.dart';
 import 'package:expense_tracker/theme.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Apptheme.light(),
       darkTheme: Apptheme.dark(),
-      home: IntroScreens(),
+      home: const SplashScreen(),
     );
   }
 }
