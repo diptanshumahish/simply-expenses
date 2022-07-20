@@ -27,6 +27,7 @@ class AddExpenses extends StatefulWidget {
 }
 
 class _AddExpensesState extends State<AddExpenses> {
+  int currentDate = DateTime.now().hour * 60 + DateTime.now().minute;
   void loadPref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -99,7 +100,12 @@ class _AddExpensesState extends State<AddExpenses> {
                           fontSize: 18),
                     ),
                     Text(
-                      DateFormat('jm').format(widget.creationDate),
+                      (currentDate -
+                                  (widget.creationDate.hour * 60 +
+                                      widget.creationDate.minute) <
+                              1440)
+                          ? DateFormat('jm').format(widget.creationDate)
+                          : DateFormat('MMM d').format(widget.creationDate),
                       style: TextStyle(
                           color: topColor == Brightness.dark
                               ? AppColors.lighttext
